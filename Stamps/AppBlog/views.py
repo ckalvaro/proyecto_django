@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from AppBlog.models import Noticia
 from AppBlog.forms import FormularioNoticia
-from datetime import datetime, date
 
 # Create your views here.
 def prueba(request):
@@ -25,3 +24,6 @@ def form_noticias(request):
         mensaje = "Rellene el formulario"
         return render(request, 'AppBlog/formulario_noticia.html', {'mensaje':mensaje, 'form':form})
 
+def noticias(request):
+    noticias = Noticia.objects.all()
+    return render(request, 'AppBlog/noticias.html', {'noticias':noticias})
