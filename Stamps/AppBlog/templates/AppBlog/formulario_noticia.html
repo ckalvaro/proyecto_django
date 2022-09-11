@@ -24,7 +24,7 @@ Formulario de Noticias
 
                             </table>
 
-                            <input class= "btn btn-primary btn-lg px-4 me-sm-3 btn-carga" type="submit" value="Enviar">
+                            <input class= "btn btn-primary btn-lg px-4 me-sm-3" type="submit" value="Enviar">
 
                     </form>
             
@@ -33,6 +33,7 @@ Formulario de Noticias
     {% else %}
 
             <h2 class="fw-bolder msj-form-carga"> {{ mensaje }} </h2>
+            <a class="btn btn-primary btn-lg px-4" href=" {% url 'form_noticia' %}"> Crear otra noticia </a>
 
     {% endif %}
 
