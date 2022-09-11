@@ -1,5 +1,27 @@
 from django.shortcuts import render
+from AppBlog.models import Noticia
+from AppBlog.forms import FormularioNoticia
+from datetime import datetime, date
 
 # Create your views here.
 def prueba(request):
     return render(request, 'AppBlog/index.html')
+
+def form_noticias(request):
+    if request.method == 'POST':
+        form = FormularioNoticia(request.POST)
+        if form.is_valid():
+            info = form.cleaned_data
+            titulo = info.get('titulo')
+            subtitulo = info.get('subtitulo')
+            cuerpo = info.get('cuerpo')
+            autor = info.get('autor')
+            noticia = Noticia(titulo = titulo, subtitulo = subtitulo, cuerpo = cuerpo, autor = autor)
+            noticia.save()
+            mensaje = "Carga exitosa"
+            return render(request, 'AppBlog/formulario_noticia.html', {'mensaje':mensaje})
+    else:
+        form = FormularioNoticia()
+        mensaje = "Rellene el formulario"
+        return render(request, 'AppBlog/formulario_noticia.html', {'mensaje':mensaje, 'form':form})
+

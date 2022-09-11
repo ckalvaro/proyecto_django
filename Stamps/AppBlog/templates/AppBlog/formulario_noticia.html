@@ -1,0 +1,39 @@
+{% extends "AppBlog/1padre.html" %}
+{% load static %}
+{% block title %}
+Formulario de Noticias
+{% endblock %}
+
+{% block contenido_que_cambia %}
+
+    {% if form != null %}
+
+
+            <div class="text-center mb-5">
+                <h2 class="fw-bolder">Formulario Noticia</h2>
+                <p class="lead mb-0">Completá el siguiente formulario</p>
+            </div>
+
+            <div class="form-container">
+
+                    <form method="post" action="{% url 'form_noticia' %}" class="form-carga"> {% csrf_token %}
+
+                            <table>
+
+                                {{ form.as_table }}
+
+                            </table>
+
+                            <input class= "btn btn-primary btn-lg px-4 me-sm-3 btn-carga" type="submit" value="Enviar">
+
+                    </form>
+            
+            </div>
+
+    {% else %}
+
+            <h2 class="fw-bolder msj-form-carga"> {{ mensaje }} </h2>
+
+    {% endif %}
+
+{% endblock %}
