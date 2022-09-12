@@ -14,8 +14,8 @@ def form_noticias(request):
             titulo = info.get('titulo')
             subtitulo = info.get('subtitulo')
             cuerpo = info.get('cuerpo')
-            autor = info.get('autor')
-            noticia = Noticia(titulo = titulo, subtitulo = subtitulo, cuerpo = cuerpo, autor = autor)
+            autor_nombre = info.get('autor_nombre')
+            noticia = Noticia(titulo = titulo, subtitulo = subtitulo, cuerpo = cuerpo, autor_nombre = autor_nombre)
             noticia.save()
             mensaje = "Carga exitosa"
             return render(request, 'AppBlog/formulario_noticia.html', {'mensaje':mensaje})

@@ -18,11 +18,11 @@ Formulario de Noticias
 
                     <form method="post" action="{% url 'form_noticia' %}" class="form-carga"> {% csrf_token %}
 
-                            <table>
+                           
 
-                                {{ form.as_table }}
+                                {{ form.as_p }}
 
-                            </table>
+                           
 
                             <input class= "btn btn-primary btn-lg px-4 me-sm-3" type="submit" value="Enviar">
 
