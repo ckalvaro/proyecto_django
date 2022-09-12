@@ -1,0 +1,16 @@
+{% extends "AppBlog/1padre.html" %}
+{% load static %}
+{% block title %}
+{{ noticia.title }}
+{% endblock %}
+
+{% block contenido_que_cambia %}
+        <h1>{{ noticia.titulo }}</h1>
+        <h2>{{ noticia.subtitulo }}</h2>
+        <h3>{{ noticia.cuerpo }}</h3>
+        <h4>Escrito por {{ noticia.autor }}</h4>
+        <h4>Creada el día : {{ noticia.fecha_creacion }}</h4>
+        <h4>Última modificación : {{ noticia.ultima_modificacion }}</h4>
+        <a href="{% url 'AppBlog:inicio' %}">Volver al inicio</a>
+
+{% endblock %}
