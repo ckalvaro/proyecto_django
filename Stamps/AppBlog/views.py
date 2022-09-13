@@ -1,13 +1,15 @@
 from django.shortcuts import render, redirect
 from AppBlog.models import Noticia
 from AppBlog.forms import FormularioNoticia
-from django.views.generic import DetailView, UpdateView, ListView
+from django.views.generic import DetailView, UpdateView, ListView, DeleteView
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse_lazy
 
 # Create your views here.
 class inicio(ListView):
     model = Noticia
     template_name = 'AppBlog/inicio_app_blog.html'
+    ordering = ['-fecha_creacion'] #ORDENA DE MAYOR A MENOR SEGUN fecha_creacion
 
 class noticia_detalle_view(DetailView):
     model = Noticia
@@ -34,3 +36,7 @@ class editar_noticia(UpdateView):
     template_name = 'AppBlog/editar_noticia.html'
     fields = ['titulo', 'subtitulo', 'cuerpo']
 
+class eliminar_noticia(DeleteView):
+    model = Noticia
+    template_name = 'AppBlog/eliminar_noticia.html'
+    success_url = reverse_lazy('AppBlog:inicio')

@@ -18,3 +18,4 @@ class Noticia(models.Model):
     
     def get_absolute_url(self):
         return reverse('AppBlog:detalle', args=(str(self.id)))
+

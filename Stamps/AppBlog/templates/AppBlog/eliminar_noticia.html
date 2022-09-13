@@ -1,0 +1,39 @@
+{% extends "AppBlog/1padre.html" %}
+{% load static %}
+{% block title %}
+Eliminar Noticia
+{% endblock %}
+
+{% block contenido_que_cambia %}
+
+    {% if form != null %}
+
+
+            <div class="text-center mb-5">
+                <h2 class="fw-bolder">Eliminación de Noticia</h2>
+                <p class="lead mb-0">{{ noticia.titulo }}</p>
+            </div>
+
+            <div class="form-container">
+
+                    <form method="post" class="form-carga"> {% csrf_token %}
+
+
+                        <h3 class="fw-bolder">Esta acción no se puede deshacer</h3>
+                        <br>
+
+                        <input class= "btn btn-primary btn-lg px-4 me-sm-3" type="submit" value="Eliminar">
+
+                    </form>
+                    <a href="{% url 'AppBlog:inicio' %}">Volver al inicio</a>
+            </div>
+
+    {% else %}
+
+            <h2 class="fw-bolder msj-form-carga"> {{ mensaje }} </h2>
+            <a class="btn btn-primary btn-lg px-4" href=" {% url 'form_noticia' %}"> Crear otra noticia </a>
+            <a class="btn btn-primary btn-lg px-4" href=" {% url 'noticias' %}"> Ver Noticias </a>
+
+    {% endif %}
+
+{% endblock %}
