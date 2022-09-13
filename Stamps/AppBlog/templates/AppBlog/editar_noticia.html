@@ -17,13 +17,8 @@ Editar Noticia
             <div class="form-container">
 
                     <form method="post" class="form-carga"> {% csrf_token %}
-
-                           
-
-                                {{ form.as_p }}
-
-                           
-
+                        {{ form.media }}
+                        {{ form.as_p }}
                             <input class= "btn btn-primary btn-lg px-4 me-sm-3" type="submit" value="Editar">
 
                     </form>

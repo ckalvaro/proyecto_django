@@ -1,12 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+from ckeditor.fields import RichTextField
 
 # Create your models here.
 class Noticia(models.Model):
     titulo = models.CharField(max_length=255)
     subtitulo = models.CharField(max_length=255)
-    cuerpo = models.TextField()
+    cuerpo = RichTextField(blank = True)
     autor = models.ForeignKey(User, on_delete=models.CASCADE)
     #creacion se determina una sola vez, al crear la noticia. 
     fecha_creacion = models.DateField(auto_now_add=True, auto_now=False, null = True)

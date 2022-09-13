@@ -7,7 +7,7 @@
 {% block contenido_que_cambia %}
         <h1>{{ noticia.titulo }}</h1>
         <h2>{{ noticia.subtitulo }}</h2>
-        <h3>{{ noticia.cuerpo }}</h3>
+        <h3>{{ noticia.cuerpo|safe }}</h3>
         <h4>Escrito por {{ noticia.autor }}</h4>
         <h4>Creada el día : {{ noticia.fecha_creacion }}</h4>
         <h4>Última modificación : {{ noticia.ultima_modificacion }}</h4>
