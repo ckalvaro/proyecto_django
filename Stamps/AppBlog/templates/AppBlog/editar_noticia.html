@@ -1,7 +1,7 @@
 {% extends "AppBlog/1padre.html" %}
 {% load static %}
 {% block title %}
-Editar Noticias
+Editar Noticia
 {% endblock %}
 
 {% block contenido_que_cambia %}
@@ -16,7 +16,7 @@ Editar Noticias
 
             <div class="form-container">
 
-                    <form method="post" action="{% url 'form_noticia' %}" class="form-carga"> {% csrf_token %}
+                    <form method="post" class="form-carga"> {% csrf_token %}
 
                            
 
