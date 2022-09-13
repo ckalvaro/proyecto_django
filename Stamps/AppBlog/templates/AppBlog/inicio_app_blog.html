@@ -5,7 +5,6 @@ Todas las Noticias
 {% endblock %}
 
 {% block contenido_que_cambia %}
-<a class="btn btn-primary btn-lg px-4" href=" {% url 'AppBlog:form_noticia' %}"> Crear una noticia </a>
 {% for noticia in object_list %}
 <div class="noticia-container"> <!-- MEJORAR ESTOO -->
     <h1><a href= "{% url 'AppBlog:detalle' noticia.pk %}">{{ noticia.titulo }} </a></h1> <!-- Si apreta el titulo va al detalle -->
@@ -16,4 +15,6 @@ Todas las Noticias
 
 </div>
 {% endfor %}
+<br>
+<a class="btn btn-primary btn-lg px-4" href=" {% url 'AppBlog:form_noticia' %}"> Crear una noticia </a>
 {% endblock %}
