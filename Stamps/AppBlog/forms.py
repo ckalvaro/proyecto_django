@@ -16,7 +16,7 @@ class FormularioNoticia(forms.ModelForm):
 class FormularioUsuario(forms.ModelForm):
     class Meta:
         model = Usuario
-        fields = ['nombre', 'apellido', 'email', 'nombre_de_usuario', 'contraseña1', 'contraseña2' ]
+        fields = ['nombre', 'apellido', 'email', 'nombre_de_usuario']
 
         # widgets = {
         #     'nombre' : forms.TextInput(attrs={'class' : 'form-control'}),
