@@ -1,0 +1,19 @@
+{% extends "AppBlog/1padre.html" %}
+{% load static %}
+{% block title %}
+Todas las Noticias
+{% endblock %}
+
+{% block contenido_que_cambia %}
+{% for usuario in usuarios %}
+<div class="noticia-container"> <!-- MEJORAR ESTOO -->
+    <h3>Nombre : {{ usuario.nombre }}</h3>
+    <h3>Apellido : {{ usuario.apellido }}</h3>
+    <h3>Email : {{ usuario.email }}</h3>
+    <h3>Nombre de usuario : {{ usuario.nombre_de_usuario }}</h3>
+    <!-- <h3>Contraseña : {{ usuario.contraseña1 }}</h3>
+    <h3>Contraseña : {{ usuario.contraseña2 }}</h3>
+     -->
+</div>
+{% endfor %}
+{% endblock %}

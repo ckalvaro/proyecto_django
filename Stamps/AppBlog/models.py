@@ -20,3 +20,13 @@ class Noticia(models.Model):
     def get_absolute_url(self):
         return reverse('AppBlog:detalle', args=(str(self.id)))
 
+class Usuario(models.Model):
+    nombre = models.CharField(max_length=50)
+    apellido = models.CharField(max_length=50)
+    email = models.EmailField(max_length=50)
+    nombre_de_usuario = models.CharField(max_length = 80)
+    # contraseña1=models.CharField(max_length = 20)
+    # contraseña2=models.CharField(max_length = 20)
+
+    def  __str__(self):
+        return str(self.nombre_de_usuario)
