@@ -18,11 +18,11 @@ class FormularioUsuario(forms.ModelForm):
         model = Usuario
         fields = ['nombre', 'apellido', 'email', 'nombre_de_usuario', 'contraseña1', 'contraseña2' ]
 
-        widgets = {
-            'nombre' : forms.TextInput(attrs = {'class' : 'form-control'}),
-            'apellido' : forms.TextInput(attrs = {'class' : 'form-control'}),
-            'email' : forms.EmailField(attrs = {'class' : 'form-control'}),
-            'nombre_de_usuario' : forms.TextInput(attrs = {'class' : 'form-control'}),
-            'contraseña1' : forms.TextInput(attrs = {'class' : 'form-control'}),
-            'contraseña2' : forms.TextInput(attrs = {'class' : 'form-control'}),
-        }
+        # widgets = {
+        #     'nombre' : forms.TextInput(attrs={'class' : 'form-control'}),
+        #     'apellido' : forms.TextInput(attrs={'class' : 'form-control'}),
+        #     'email' : forms.EmailField(attrs={'class' : 'form-control'}),
+        #     'nombre_de_usuario' : forms.TextInput(attrs={'class' : 'form-control'}),
+        #     'contraseña1' : forms.TextInput(attrs={'class' : 'form-control'}),
+        #     'contraseña2' : forms.TextInput(attrs={'class' : 'form-control'}),
+        # }
