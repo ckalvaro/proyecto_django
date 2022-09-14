@@ -16,14 +16,9 @@ Formulario de Noticias
 
             <div class="form-container">
 
-                    <form method="post" action="{% url 'form_noticia' %}" class="form-carga"> {% csrf_token %}
-
-                           
-
+                    <form method="post" action="{% url 'AppBlog:form_noticia' %}" class="form-carga"> {% csrf_token %}
+                                {{ form.media }}
                                 {{ form.as_p }}
-
-                           
-
                             <input class= "btn btn-primary btn-lg px-4 me-sm-3" type="submit" value="Enviar">
 
                     </form>
@@ -33,7 +28,7 @@ Formulario de Noticias
     {% else %}
 
             <h2 class="fw-bolder msj-form-carga"> {{ mensaje }} </h2>
-            <a class="btn btn-primary btn-lg px-4" href=" {% url 'form_noticia' %}"> Crear otra noticia </a>
+            <a class="btn btn-primary btn-lg px-4" href=" {% url 'AppBlog:form_noticia' %}"> Crear otra noticia </a>
 
     {% endif %}
 

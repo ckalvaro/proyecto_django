@@ -1,0 +1,20 @@
+{% extends "AppBlog/1padre.html" %}
+{% load static %}
+{% block title %}
+Todas las Noticias
+{% endblock %}
+
+{% block contenido_que_cambia %}
+{% for noticia in object_list %}
+<div class="noticia-container"> <!-- MEJORAR ESTOO -->
+    <h1><a href= "{% url 'AppBlog:detalle' noticia.pk %}">{{ noticia.titulo }} </a></h1> <!-- Si apreta el titulo va al detalle -->
+    <h2>{{ noticia.subtitulo }}</h2>
+    <h6>Escrito por {{ noticia.autor }}, el día {{ noticia.fecha_creacion }}</h6>
+    <a href= "{% url 'AppBlog:editar_noticia' noticia.pk %}"> [Editar] </a>
+    <a href= "{% url 'AppBlog:eliminar_noticia' noticia.pk %}"> [Eliminar] </a>
+
+</div>
+{% endfor %}
+<br>
+<a class="btn btn-primary btn-lg px-4" href=" {% url 'AppBlog:form_noticia' %}"> Crear una noticia </a>
+{% endblock %}
