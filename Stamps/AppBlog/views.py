@@ -1,15 +1,12 @@
-<<<<<<< HEAD
 from django.shortcuts import render, redirect
 from AppBlog.models import Noticia
 from AppBlog.forms import FormularioNoticia
 from django.views.generic import DetailView, UpdateView, ListView, DeleteView
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
-=======
 from django.shortcuts import render
 from AppBlog.models import Noticia, Usuario
 from AppBlog.forms import FormularioNoticia, FormularioUsuario
->>>>>>> 323cd98adf0c9820f1194a5e949c500c9c8df07d
 
 # Create your views here.
 class inicio(ListView):
@@ -36,7 +33,6 @@ def form_noticias(request):
         mensaje = "Rellene el formulario"
         return render(request, 'AppBlog/formulario_noticia.html', {'mensaje':mensaje, 'form':form})
 
-<<<<<<< HEAD
 
 class editar_noticia(UpdateView):
     model = Noticia
@@ -47,7 +43,6 @@ class eliminar_noticia(DeleteView):
     model = Noticia
     template_name = 'AppBlog/eliminar_noticia.html'
     success_url = reverse_lazy('AppBlog:inicio')
-=======
 def noticias(request):
     noticias = Noticia.objects.all()
     return render(request, 'AppBlog/noticias.html', {'noticias':noticias})
@@ -75,4 +70,3 @@ def form_usuarios(request):
 def usuarios(request):
     usuarios = Usuario.objects.all()
     return render(request, 'AppBlog/usuarios.html', {'usuarios':usuarios})
->>>>>>> 323cd98adf0c9820f1194a5e949c500c9c8df07d
