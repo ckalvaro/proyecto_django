@@ -4,6 +4,17 @@ from django.urls import reverse
 from ckeditor.fields import RichTextField
 
 # Create your models here.
+class Categoria(models.Model):
+    nombre = models.CharField(max_length=255)
+
+    def __str__(self):
+        return "Categoría " + self.nombre
+    
+    def get_absolute_url(self):
+        return reverse('AppBlog:inicio')
+
+
+
 class Noticia(models.Model):
     titulo = models.CharField(max_length=255)
     subtitulo = models.CharField(max_length=255)
@@ -13,6 +24,8 @@ class Noticia(models.Model):
     fecha_creacion = models.DateField(auto_now_add=True, auto_now=False, null = True)
     #ultima_modificacion se actualiza cada vez que se guarda un cambio en la noticia
     ultima_modificacion = models.DateTimeField(auto_now_add=False, auto_now=True, null = True)
+    categoria = models.CharField(max_length=30, default = 'placeholder')
+
 
     def __str__(self):
         return self.titulo + " por " + str(self.autor)

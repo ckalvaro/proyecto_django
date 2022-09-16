@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect
 from AppBlog.models import Noticia
 from AppBlog.forms import FormularioNoticia
-from django.views.generic import DetailView, UpdateView, ListView, DeleteView
+from django.views.generic import DetailView, UpdateView, ListView, DeleteView, CreateView
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.shortcuts import render
 from AppBlog.models import Noticia, Usuario
 from AppBlog.forms import FormularioNoticia, FormularioUsuario
+from AppBlog.models import Categoria
 
 # Create your views here.
 class inicio(ListView):
@@ -33,6 +34,10 @@ def form_noticias(request):
         mensaje = "Rellene el formulario"
         return render(request, 'AppBlog/formulario_noticia.html', {'mensaje':mensaje, 'form':form})
 
+class NuevaCategoriaView(CreateView):
+    model = Categoria
+    template_name = 'AppBlog/nueva_categoria.html'
+    fields = '__all__'
 
 class editar_noticia(UpdateView):
     model = Noticia
