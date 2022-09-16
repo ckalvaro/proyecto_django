@@ -75,3 +75,41 @@ def form_usuarios(request):
 def usuarios(request):
     usuarios = Usuario.objects.all()
     return render(request, 'AppBlog/usuarios.html', {'usuarios':usuarios})
+
+def eliminar_usuario(request, id):
+    usuario = Usuario.objects.get(id = id)
+    usuario.delete()
+    usuarios=Usuario.objects.all()
+    return render(request, 'AppBlog/usuarios.html', {'usuarios': usuarios})
+
+def editar_usuario(request, id):
+    usuario=Usuario.objects.get(id = id)
+    if request.method == "POST":
+        form = FormularioUsuario(request.POST)
+        if form.is_valid():
+            info = form.cleaned_data
+            usuario.nombre = info["nombre"]
+            usuario.apellido = info["apellido"]
+            usuario.email = info["email"]
+            usuario.nombre_de_usuario = info["nombre_de_usuario"]
+            usuario.save()
+            usuarios=Usuario.objects.all()
+            mensaje = "Usuario editado exitosamente"
+            return render(request, 'AppBlog/usuarios.html', {'usuarios': usuarios, 'mensaje': mensaje})
+    else:
+        form = FormularioUsuario( initial = { 
+            "nombre" : usuario.nombre, 
+            "apellido" : usuario.apellido,
+            "email" : usuario.email,
+            "nombre_de_usuario" : usuario.nombre_de_usuario, 
+        
+        })
+
+        return render (request, 'AppBlog/editar_usuario.html', {
+            "formulario": form, 
+            "nombre" : usuario.nombre,
+            "id" : usuario.id, 
+            # "apellido" : usuario.apellido,    
+            # "email" : usuario.email,
+            # "nombre_de_usuario" : usuario.nombre_de_usuario,
+        })

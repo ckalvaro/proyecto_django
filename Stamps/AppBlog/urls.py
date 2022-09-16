@@ -1,5 +1,5 @@
 from django.urls import path
-from AppBlog.views import inicio, noticia_detalle_view, form_noticias, editar_noticia, eliminar_noticia, form_usuarios, usuarios, NuevaCategoriaView
+from AppBlog.views import inicio, noticia_detalle_view, form_noticias, editar_noticia, eliminar_noticia, NuevaCategoriaView, form_usuarios, usuarios, eliminar_usuario, editar_usuario
 app_name = 'AppBlog'
 urlpatterns = [
     path('', inicio.as_view(), name='inicio'), 
@@ -10,4 +10,6 @@ urlpatterns = [
     path('noticia/eliminar/<int:pk>', eliminar_noticia.as_view(), name='eliminar_noticia'),
     path('form_usuario/', form_usuarios, name= 'form_usuario'),
     path('usuarios/', usuarios, name = 'usuarios'),
+    path('editar_usuario/<id>', editar_usuario, name = 'editar_usuario'),
+    path('eliminar_usuario/<id>', eliminar_usuario, name = 'eliminar_usuario'),
 ]

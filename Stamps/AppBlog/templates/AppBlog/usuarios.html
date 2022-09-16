@@ -15,5 +15,13 @@ Lista de Usuarios
     <h3>Contraseña : {{ usuario.contraseña2 }}</h3>
      -->
 </div>
+<button><a href = "{% url 'AppBlog:eliminar_usuario' usuario.id %}" >Eliminar</a></button>
+<button><a href = "{% url 'AppBlog:editar_usuario' usuario.id %}" >Editar</a></button>
+
 {% endfor %}
+
+{{ mensaje }}
+
+<p><button><a class="btn btn-primary btn-lg px-4" href=" {% url 'AppBlog:form_usuario' %}"> Crear otro usuario </a></button></p>
+
 {% endblock %}
