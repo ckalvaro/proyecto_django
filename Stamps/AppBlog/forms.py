@@ -1,11 +1,12 @@
 from django import forms
 from AppBlog.models import Noticia, Usuario, Categoria
 #crear una lista con todas las categorias
-opciones = Categoria.objects.all().values_list('nombre', 'nombre')
+#opciones = Categoria.objects.all().values_list('nombre', 'nombre')
 #esto retorna un queryset, hay que 'limpiar' los datos para trabajar más cómodos
 lista_opciones = []
-for opcion in opciones:
-    lista_opciones.append(opcion)
+
+#for opcion in opciones:
+    #lista_opciones.append(opcion)
 
 class FormularioNoticia(forms.ModelForm):
     class Meta:
