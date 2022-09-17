@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.shortcuts import render
 from AppBlog.models import Noticia, Usuario
-from AppBlog.forms import FormularioNoticia, FormularioUsuario
+from AppBlog.forms import FormularioNoticia, FormularioUsuario, RegistroDeUsuario
 from AppBlog.models import Categoria
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
@@ -143,12 +143,12 @@ def login_view(request):
 
 def registro(request):
     if request.method == "POST":
-        form = UserCreationForm(request.POST)
+        form = RegistroDeUsuario(request.POST)
         if form.is_valid():
             username = form.cleaned_data["username"]
             form.save()
             mensaje = "Usuario {username} creado"
             return render (request, 'AppBlog/inicio_app_blog.html/', {"mensaje" :  mensaje})
     else:
-        form = UserCreationForm()
+        form = RegistroDeUsuario()
         return render (request, 'AppBlog/registro.html', {"form" : form})
