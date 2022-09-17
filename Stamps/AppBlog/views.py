@@ -8,7 +8,7 @@ from django.shortcuts import render
 from AppBlog.models import Noticia, Usuario
 from AppBlog.forms import FormularioNoticia, FormularioUsuario
 from AppBlog.models import Categoria
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
 
 # Create your views here.
@@ -139,3 +139,16 @@ def login_view(request):
     else:
         form=AuthenticationForm()
         return render (request, 'AppBlog/login.html', {"form" : form})
+
+
+def registro(request):
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data["username"]
+            form.save()
+            mensaje = "Usuario {username} creado"
+            return render (request, 'AppBlog/inicio_app_blog.html/', {"mensaje" :  mensaje})
+    else:
+        form = UserCreationForm()
+        return render (request, 'AppBlog/registro.html', {"form" : form})

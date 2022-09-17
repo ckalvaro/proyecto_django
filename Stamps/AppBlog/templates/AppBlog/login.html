@@ -1,12 +1,12 @@
 {% extends "AppBlog/1padre.html" %}
 {% load static %}
 {% block title %}
-Registro de Usuarios
+Incio de sesión
 {% endblock %}
 
 {% block contenido_que_cambia %}
 
-<h1>Formulario de registro</h1>
+<h1>Inicio de sesión</h1>
 
 <form method="post" action="{% url 'AppBlog:login' %}" class="form-carga"> {% csrf_token %}
 

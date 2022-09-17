@@ -1,5 +1,5 @@
 from django.urls import path
-from AppBlog.views import inicio, noticia_detalle_view, form_noticias, editar_noticia, eliminar_noticia, NuevaCategoriaView, form_usuarios, usuarios, eliminar_usuario, editar_usuario, login_view
+from AppBlog.views import inicio, noticia_detalle_view, form_noticias, editar_noticia, eliminar_noticia, NuevaCategoriaView, form_usuarios, usuarios, eliminar_usuario, editar_usuario, login_view, registro
 # from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 app_name = 'AppBlog'
@@ -15,6 +15,7 @@ urlpatterns = [
     path('editar_usuario/<id>', editar_usuario, name = 'editar_usuario'),
     path('eliminar_usuario/<id>', eliminar_usuario, name = 'eliminar_usuario'),
     path('login/', login_view, name="login"),
+    path('registro/', registro, name = 'registro'),
 ]
 
 # urlpatterns += staticfiles_urlpatterns()
