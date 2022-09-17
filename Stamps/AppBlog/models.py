@@ -13,19 +13,16 @@ class Categoria(models.Model):
     def get_absolute_url(self):
         return reverse('AppBlog:inicio')
 
-
-
 class Noticia(models.Model):
     titulo = models.CharField(max_length=255)
     subtitulo = models.CharField(max_length=255)
     cuerpo = RichTextField(blank = True)
     autor = models.ForeignKey(User, on_delete=models.CASCADE)
     #creacion se determina una sola vez, al crear la noticia. 
-    fecha_creacion = models.DateField(auto_now_add=True, auto_now=False, null = True)
+    fecha_creacion = models.DateField(auto_now_add=True, auto_now=False, null = True, blank=True)
     #ultima_modificacion se actualiza cada vez que se guarda un cambio en la noticia
-    ultima_modificacion = models.DateTimeField(auto_now_add=False, auto_now=True, null = True)
+    ultima_modificacion = models.DateTimeField(auto_now_add=False, auto_now=True, null = True, blank=True)
     categoria= models.ForeignKey(Categoria, blank=True, null=True, on_delete=models.CASCADE)
-
 
     def __str__(self):
         return self.titulo + " por " + str(self.autor)
