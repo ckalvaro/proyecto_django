@@ -1,6 +1,7 @@
 from django.urls import path
 from AppBlog.views import inicio, noticia_detalle_view, form_noticias, editar_noticia, eliminar_noticia, NuevaCategoriaView, form_usuarios, usuarios, eliminar_usuario, editar_usuario, login_view, registro
 # from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.contrib.auth.views import LogoutView
 
 app_name = 'AppBlog'
 urlpatterns = [
@@ -16,6 +17,7 @@ urlpatterns = [
     path('eliminar_usuario/<id>', eliminar_usuario, name = 'eliminar_usuario'),
     path('login/', login_view, name="login"),
     path('registro/', registro, name = 'registro'),
+    path('logout/', LogoutView.as_view(template_name ='AppBlog/index.html'), name='logout')
 ]
 
 # urlpatterns += staticfiles_urlpatterns()
