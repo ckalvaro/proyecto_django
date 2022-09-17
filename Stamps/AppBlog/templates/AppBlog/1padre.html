@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>{% block title %} CAMBIAR TITULOOO {% endblock %}</title>
+        <title>{% block title %} CAMBIAR TITULO {% endblock %}</title>
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
@@ -27,29 +27,38 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Home</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="about.html">About</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="post.html">Sample Post</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="contact.html">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="about.html">Noticias</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="post.html">Usuarios</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="contact.html">Contacto</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
         <!-- Page Header-->
-        <header class="masthead" style="background-image: url('{% block imagen_de_fondo %} {% endblock %}')">
+        <header class="masthead" style="background-image: url ('{% block imagen_de_fondo %} {% endblock %}')">
+            <!-- {% load static %} <img src="{% static "styles/assets/img/home-bg.jpg" %}" alt="Hi!" /> -->
             <div class="container position-relative px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <div class="site-heading">
-                            {% block contenido_que_cambia %}
-                            <h1>esto tiene q cambiarr</h1>
-                            {% endblock %}
-                            <span class="subheading">A Blog Theme by Start Bootstrap</span>
+                            <span class="subheading">Blog de noticias</span>
                         </div>
                     </div>
                 </div>
             </div>
         </header>
+        <section>
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="site-heading">
+                        {% block contenido_que_cambia %}
+                        <h1>esto tiene q cambiar</h1>
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+        </section>
         <!-- Footer-->
         <footer class="border-top">
             <div class="container px-4 px-lg-5">
