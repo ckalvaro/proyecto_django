@@ -22,6 +22,7 @@
         "subtitulo": "La participante le reveló a Guido Kaczka por qué no pudo convertirse en millonaria. La mujer no cobró el dinero debido a una mala decisión.",
         "autor_id": 1,
         "fecha_creacion": "2022-09-17",
+        "categoria":1,
         "cuerpo": "Lidia se mostró como una gran jugadora de las máquinas tragamonedas en los casinos. En su paso por Los 8 escalones del millón reveló una anécdota inolvidable: un error impidió que se convirtiera en millonaria. La mujer le reveló a Guido Kaczka que en 1994 ganó lo máximo que se podía ganar en una máquina de tragamonedas. ¿Cuánto?, le preguntó el conductor, que quedó en shock cuando escuchó la cifra. En el año 94 sería un millón de pesos, detalló Lidia. Y Guido exclamó sorprendido: No, ¡un millón de dólares en ese año!. Pero dejó a todos impactados cuando confesó qué hizo mal y ya no pudo revertir la situación. La participante confesó que no pudo cobrar el dinero y explicó los motivos: “Me fui, puse una moneda, giró de vuelta el rodillo y un señor se acerca y me dice: Usted no sabe lo que acaba de hacer. Entre risas, detalló que su reacción fue irse del casino: Después averigüé y era el premio mayor."
         }
     },
@@ -33,6 +34,7 @@
         "subtitulo": "A la medianoche argentina, el mexicano y el kazajo disputarán el tercer capítulo de una rivalidad histórica. Ponen el juego la corona unificada de la categoría súpermediana.",
         "autor_id": 1,
         "fecha_creacion": "2022-09-17",
+        "categoria":2,
         "cuerpo": "A 24 horas de poner en juego sus cinturones de campeón del mundo de boxeo y gran parte de su legado, Saúl 'Canelo' Álvarez fue apoyado este viernes por centenares de hinchas mexicanos en la ceremonia de pesaje para su tercer enfrentamiento ante su archirrival Gennady Golovkin. Tanto el púgil como su equipo y sus seguidores coinciden en que 'Canelo' necesita un triunfo contundente el sábado en Las Vegas (Nevada) para zanjar definitivamente a su favor la trilogía ante Golovkin y también redimirse de su inesperada derrota de mayo frente al ruso Dmitry Bivol."
       }
     }
