@@ -8,6 +8,8 @@ from django.shortcuts import render
 from AppBlog.models import Noticia, Usuario
 from AppBlog.forms import FormularioNoticia, FormularioUsuario
 from AppBlog.models import Categoria
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth import login, logout, authenticate
 
 # Create your views here.
 class inicio(ListView):
@@ -52,6 +54,7 @@ def noticias(request):
     noticias = Noticia.objects.all()
     return render(request, 'AppBlog/noticias.html', {'noticias':noticias})
 
+@login_required
 def form_usuarios(request):
     if request.method == 'POST':
         form = FormularioUsuario(request.POST)
@@ -72,15 +75,18 @@ def form_usuarios(request):
         mensaje = "Rellene el formulario"
         return render(request, 'AppBlog/formulario_usuario.html', {'mensaje':mensaje, 'form':form})
 
+
 def usuarios(request):
     usuarios = Usuario.objects.all()
     return render(request, 'AppBlog/usuarios.html', {'usuarios':usuarios})
+
 
 def eliminar_usuario(request, id):
     usuario = Usuario.objects.get(id = id)
     usuario.delete()
     usuarios=Usuario.objects.all()
     return render(request, 'AppBlog/usuarios.html', {'usuarios': usuarios})
+
 
 def editar_usuario(request, id):
     usuario=Usuario.objects.get(id = id)
@@ -113,3 +119,36 @@ def editar_usuario(request, id):
             # "email" : usuario.email,
             # "nombre_de_usuario" : usuario.nombre_de_usuario,
         })
+
+def login_view(request):
+    if request.method == "POST":
+        form = AuthenticationForm(request, data = request.POST)
+        if form.is_valid():
+            usuario = request.POST["username"]
+            clave=request.POST["password"]
+            usuario_logueado= authenticate(username = usuario, password = clave)
+            if usuario_logueado is not None:
+                login (request, usuario_logueado)
+                mensaje = "Bienvenido {usuario_logueado}"
+                return render (request, 'AppBlog/inicio_app_blog.html', {"mensaje" : mensaje} )
+            else:
+                mensaje = "Usuario o contraseña incorrectos"
+                return render (request, 'AppBlog/login.html', {"mensaje": mensaje, "form" : form})
+        else:
+            return render(request, 'AppBlog/login.html', {"form": form})
+    else:
+        form=AuthenticationForm()
+        return render (request, 'AppBlog/login.html', {"form" : form})
+
+
+def registro(request):
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data["username"]
+            form.save()
+            mensaje = "Usuario {username} creado"
+            return render (request, 'AppBlog/inicio_app_blog.html/', {"mensaje" :  mensaje})
+    else:
+        form = UserCreationForm()
+        return render (request, 'AppBlog/registro.html', {"form" : form})
