@@ -1,6 +1,6 @@
 from django import forms
 from AppBlog.models import Noticia, Usuario, Categoria
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 
 class FormularioNoticia(forms.ModelForm):
@@ -38,3 +38,9 @@ class RegistroDeUsuario(UserCreationForm):
         model = User
         fields = ["username", "email", "password1", "password2"]
         help_texts = {k : " " for k in fields}
+
+class InicioDeUsuario(AuthenticationForm):
+    username = forms.CharField(label = "Nombre de usuario")
+    password = forms.CharField(label = "Contraseña", widget = forms.PasswordInput)
+
+    
