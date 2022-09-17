@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.shortcuts import render
 from AppBlog.models import Noticia, Usuario
-from AppBlog.forms import FormularioNoticia, FormularioUsuario, RegistroDeUsuario
+from AppBlog.forms import FormularioNoticia, FormularioUsuario, RegistroDeUsuario, InicioDeUsuario
 from AppBlog.models import Categoria
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
@@ -122,7 +122,7 @@ def editar_usuario(request, id):
 
 def login_view(request):
     if request.method == "POST":
-        form = AuthenticationForm(request, data = request.POST)
+        form = InicioDeUsuario(request, data = request.POST)
         if form.is_valid():
             usuario = request.POST["username"]
             clave=request.POST["password"]
@@ -137,7 +137,7 @@ def login_view(request):
         else:
             return render(request, 'AppBlog/login.html', {"form": form})
     else:
-        form=AuthenticationForm()
+        form=InicioDeUsuario()
         return render (request, 'AppBlog/login.html', {"form" : form})
 
 
