@@ -42,7 +42,7 @@ class NuevaCategoriaView(CreateView):
 class editar_noticia(UpdateView):
     model = Noticia
     template_name = 'AppBlog/editar_noticia.html'
-    fields = ['titulo', 'subtitulo', 'cuerpo']
+    fields = ['titulo', 'subtitulo','categoria', 'cuerpo']
 
 class eliminar_noticia(DeleteView):
     model = Noticia

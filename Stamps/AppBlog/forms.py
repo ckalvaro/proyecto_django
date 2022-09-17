@@ -1,12 +1,5 @@
 from django import forms
 from AppBlog.models import Noticia, Usuario, Categoria
-#crear una lista con todas las categorias
-#opciones = Categoria.objects.all().values_list('nombre', 'nombre')
-#esto retorna un queryset, hay que 'limpiar' los datos para trabajar más cómodos
-lista_opciones = []
-
-#for opcion in opciones:
-    #lista_opciones.append(opcion)
 
 class FormularioNoticia(forms.ModelForm):
     class Meta:
@@ -15,7 +8,7 @@ class FormularioNoticia(forms.ModelForm):
         widgets = {
             'titulo': forms.TextInput(attrs={'class': 'form-control'}),
             'subtitulo': forms.TextInput(attrs={'class': 'form-control'}),
-            'categoria': forms.Select(choices = lista_opciones, attrs={'class': 'form-control'}),
+            'categoria': forms.Select(attrs={'class': 'form-control'}),
             'cuerpo': forms.Textarea(attrs={'class': 'form-control'}),
         }
 
