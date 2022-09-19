@@ -12,8 +12,10 @@ Todas las Noticias
     <h2>{{ noticia.subtitulo }}</h2>
     <h6>Escrito por {{ noticia.autor }}, el día {{ noticia.fecha_creacion }}</h6>
     {% if user.is_authenticated %}
-    <a href= "{% url 'AppBlog:editar_noticia' noticia.pk %}"> [Editar] </a>
-    <a href= "{% url 'AppBlog:eliminar_noticia' noticia.pk %}"> [Eliminar] </a>
+        {%if user.id == noticia.autor.id %}
+            <a href= "{% url 'AppBlog:editar_noticia' noticia.pk %}"> [Editar] </a>
+            <a href= "{% url 'AppBlog:eliminar_noticia' noticia.pk %}"> [Eliminar] </a>
+        {% endif %}
     {% endif %}
 
 </div>
