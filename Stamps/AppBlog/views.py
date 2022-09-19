@@ -168,7 +168,6 @@ def editar_usuario(request):
         form=UserEditForm(request.POST)
         if form.is_valid():
             info=form.cleaned_data
-            usuario.username=info["username"]
             usuario.email=info["email"]
             usuario.password1=info["password1"]
             usuario.password2=info["password2"]
