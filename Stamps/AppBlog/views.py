@@ -23,8 +23,12 @@ class noticia_detalle_view(DetailView):
         context = super(noticia_detalle_view, self).get_context_data(**kwargs)
         #esto accede a la noticia con ID == a la noticia del detalle
         datos_noticia = get_object_or_404(Noticia, id=self.kwargs['pk'])
+        likeado = False
         likes = datos_noticia.cantidad_likes()
+        if datos_noticia.likes.filter(id=self.request.user.id).exists():
+            likeado = True
         context["cantidad_likes"] = likes
+        context["likeado"] = likeado 
         return context
 
 def form_noticias(request):
@@ -62,7 +66,13 @@ def noticias(request):
 
 def like_noticia(request, pk):
     noticia = get_object_or_404(Noticia, id = request.POST.get('noticia_like'))
-    noticia.likes.add(request.user)
+    likeado = False
+    if noticia.likes.filter(id=request.user.id).exists():
+        noticia.likes.remove(request.user)
+        likeado = False
+    else:
+        noticia.likes.add(request.user)
+        likeado = True
     return HttpResponseRedirect(reverse('AppBlog:detalle' , args=(str(pk))))
 
 #def eliminar_usuario(request, id):
