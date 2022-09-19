@@ -4,16 +4,18 @@
 Incio de sesión
 {% endblock %}
 
+
 {% block contenido_que_cambia %}
 
 <h1>Inicio de sesión</h1>
+
+{{ mensaje }}
 
 <form method="post" action="{% url 'AppBlog:login' %}" class="form-carga"> {% csrf_token %}
 
     {{ form.as_p }}
 
     <button type = "submit"> Inicio de sesión </button>
-
 
 </form>
 
