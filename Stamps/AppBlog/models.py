@@ -25,10 +25,12 @@ class Noticia(models.Model):
     categoria= models.ForeignKey(Categoria, blank=True, null=True, on_delete=models.CASCADE)
     #un usuario puede tener varios posts, y cada post puede tener varios likes
     likes = models.ManyToManyField(User, related_name='noticia_likes')
-
+    
     def __str__(self):
         return self.titulo + " por " + str(self.autor)
     
     def get_absolute_url(self):
         return reverse('AppBlog:detalle', args=(str(self.id)))
 
+    def cantidad_likes(self):
+        return self.likes.count()

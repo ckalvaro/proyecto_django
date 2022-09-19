@@ -8,7 +8,7 @@ from AppBlog.models import Noticia
 from AppBlog.forms import FormularioNoticia
 from AppBlog.models import Categoria
 from django.http import HttpResponseRedirect 
-
+from django.template import context
 
 # Create your views here.
 class inicio(ListView):
@@ -19,6 +19,13 @@ class inicio(ListView):
 class noticia_detalle_view(DetailView):
     model = Noticia
     template_name = 'AppBlog/noticia_detalle.html'
+    def get_context_data(self, *args, **kwargs):
+        context = super(noticia_detalle_view, self).get_context_data(**kwargs)
+        #esto accede a la noticia con ID == a la noticia del detalle
+        datos_noticia = get_object_or_404(Noticia, id=self.kwargs['pk'])
+        likes = datos_noticia.cantidad_likes()
+        context["cantidad_likes"] = likes
+        return context
 
 def form_noticias(request):
     if request.method == 'POST':

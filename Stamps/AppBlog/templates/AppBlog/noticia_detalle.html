@@ -22,9 +22,10 @@
         <form action="{% url 'AppBlog:like_noticia' noticia.pk %}" method="POST">
            {% csrf_token %}
         <button type="submit" name="noticia_like" value="{{ noticia.id }}" class="btn btn-primary btn-sm"> 
-                Me gusta 
+                Me gusta
         </button>
         </form>
+        - A {{ cantidad_likes }} personas les gusta esta noticia! 
         <hr>
         <a href="{% url 'AppBlog:inicio' %}">Volver al inicio</a>
 {% endblock %}
