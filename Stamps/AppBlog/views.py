@@ -2,14 +2,12 @@ from django.shortcuts import render, redirect
 from AppBlog.models import Noticia
 from AppBlog.forms import FormularioNoticia
 from django.views.generic import DetailView, UpdateView, ListView, DeleteView, CreateView
-from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.shortcuts import render
-from AppBlog.models import Noticia, Usuario
-from AppBlog.forms import FormularioNoticia, FormularioUsuario, RegistroDeUsuario, InicioDeUsuario
+from AppBlog.models import Noticia
+from AppBlog.forms import FormularioNoticia
 from AppBlog.models import Categoria
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.contrib.auth import login, logout, authenticate
+
 
 # Create your views here.
 class inicio(ListView):
@@ -21,7 +19,6 @@ class noticia_detalle_view(DetailView):
     model = Noticia
     template_name = 'AppBlog/noticia_detalle.html'
 
-@login_required
 def form_noticias(request):
     if request.method == 'POST':
         form = FormularioNoticia(request.POST)
