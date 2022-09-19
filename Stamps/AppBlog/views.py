@@ -1,12 +1,13 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from AppBlog.models import Noticia
 from AppBlog.forms import FormularioNoticia
 from django.views.generic import DetailView, UpdateView, ListView, DeleteView, CreateView
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.shortcuts import render
 from AppBlog.models import Noticia
 from AppBlog.forms import FormularioNoticia
 from AppBlog.models import Categoria
+from django.http import HttpResponseRedirect 
 
 
 # Create your views here.
@@ -47,14 +48,15 @@ class eliminar_noticia(DeleteView):
     model = Noticia
     template_name = 'AppBlog/eliminar_noticia.html'
     success_url = reverse_lazy('AppBlog:inicio')
+
 def noticias(request):
     noticias = Noticia.objects.all()
     return render(request, 'AppBlog/noticias.html', {'noticias':noticias})
 
-def usuarios(request):
-    usuarios = Usuario.objects.all()
-    return render(request, 'AppBlog/usuarios.html', {'usuarios':usuarios})
-
+def like_noticia(request, pk):
+    noticia = get_object_or_404(Noticia, id = request.POST.get('noticia_like'))
+    noticia.likes.add(request.user)
+    return HttpResponseRedirect(reverse('AppBlog:detalle' , args=(str(pk))))
 
 #def eliminar_usuario(request, id):
     #usuario = Usuario.objects.get(id = id)

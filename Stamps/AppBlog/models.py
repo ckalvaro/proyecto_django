@@ -23,6 +23,8 @@ class Noticia(models.Model):
     #ultima_modificacion se actualiza cada vez que se guarda un cambio en la noticia
     ultima_modificacion = models.DateTimeField(auto_now_add=False, auto_now=True, null = True, blank=True)
     categoria= models.ForeignKey(Categoria, blank=True, null=True, on_delete=models.CASCADE)
+    #un usuario puede tener varios posts, y cada post puede tener varios likes
+    likes = models.ManyToManyField(User, related_name='noticia_likes')
 
     def __str__(self):
         return self.titulo + " por " + str(self.autor)

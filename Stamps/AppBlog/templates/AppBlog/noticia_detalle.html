@@ -18,6 +18,13 @@
                         <br>
                 {% endif %}
         {% endif %}
+        <hr>
+        <form action="{% url 'AppBlog:like_noticia' noticia.pk %}" method="POST">
+           {% csrf_token %}
+        <button type="submit" name="noticia_like" value="{{ noticia.id }}" class="btn btn-primary btn-sm"> 
+                Me gusta 
+        </button>
+        </form>
+        <hr>
         <a href="{% url 'AppBlog:inicio' %}">Volver al inicio</a>
-
 {% endblock %}
