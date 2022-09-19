@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'AppBlog',
     'AppMensajes',
     'ckeditor',
+    'usuarios',
 ]
 
 MIDDLEWARE = [
@@ -125,4 +126,6 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_URL = 'AppBlog/login/'
+#LOGIN_URL = 'usuarios/login/'
+LOGIN_REDIRECT_URL = 'AppBlog:inicio'
+LOGOUT_REDIRECT_URL = 'AppBlog:inicio'

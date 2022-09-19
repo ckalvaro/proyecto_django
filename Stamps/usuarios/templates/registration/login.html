@@ -1,0 +1,27 @@
+{% extends "AppBlog/1padre.html" %}
+{% load static %}
+{% block title %}
+Página de Login
+{% endblock %}
+
+{% block contenido_que_cambia %}
+
+            <div class="text-center mb-5">
+                <h2 class="fw-bolder">Login</h2>
+                <p class="lead mb-0">Completá el siguiente formulario</p>
+            </div>
+
+            <div class="form-container">
+
+                    <form method="post"> 
+                            {% csrf_token %}
+                                {{ form.media }}
+                                {{ form.as_p }}
+                            <input class= "btn btn-primary btn-lg px-4 me-sm-3" type="submit" value="Ingresar">
+
+                    </form>
+            
+            </div>
+
+
+{% endblock %}
