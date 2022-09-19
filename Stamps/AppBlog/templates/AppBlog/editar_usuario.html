@@ -7,16 +7,16 @@
 
 
             <div class="text-center mb-5">
-                <h2 class="fw-bolder">Edición de usuario {{ nombre_de_usuario }} </h2>
+                <h2 class="fw-bolder">Edición de {{ usuario }} </h2>
             </div>
 
             <div class="form-container">
 
-                    <form method="post" action="{% url 'AppBlog:editar_usuario' id %}" class="form-carga"> {% csrf_token %}
+                    <form method="post" action="{% url 'AppBlog:editar_usuario' %}" class="form-carga"> {% csrf_token %}
 
                            
 
-                                {{ formulario.as_p }}
+                                {{ form.as_p }}
 
                            
 
@@ -25,9 +25,6 @@
                     </form>
             
             </div>
-
-            <h2 class="fw-bolder msj-form-carga"> {{ mensaje }} </h2>
-            <a class="btn btn-primary btn-lg px-4" href=" {% url 'AppBlog:usuarios' %}"> Editar otro usuario </a>
 
 
 {% endblock %}
