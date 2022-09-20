@@ -121,6 +121,8 @@ def editar_usuario(request):
             usuario.password2=info["password2"]
             usuario.save()
             return render (request, 'AppBlog/inicio_app_blog.html', {"mensaje": f"Perfil de {usuario} editado"})
+        else:
+            return render(request,'AppBlog/inicio_app_blog.html', {"mensaje": "Formulario Inválido", "form": form})
     else:
         form=UserEditForm(instance=usuario)
         return render (request, 'AppBlog/editar_usuario.html', {"form": form, "usuario": usuario})
