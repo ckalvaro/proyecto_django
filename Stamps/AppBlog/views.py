@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import DetailView, UpdateView, ListView, DeleteView, CreateView
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy, reverse
-from django.shortcuts import render
 from AppBlog.models import Noticia
 from AppBlog.forms import FormularioNoticia, RegistroDeUsuario, InicioDeUsuario, UserEditForm
 from AppBlog.models import Categoria
