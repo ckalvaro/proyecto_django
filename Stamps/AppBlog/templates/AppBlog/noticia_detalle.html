@@ -8,9 +8,9 @@
         <h1>{{ noticia.titulo }}</h1>
         <h2>{{ noticia.subtitulo }}</h2>
         <h3>{{ noticia.cuerpo|safe }}</h3>
-        <h4>Escrito por {{ noticia.autor }} </h4>
-        <h4>Creada el día : {{ noticia.fecha_creacion }}</h4>
-        <h4>Última modificación : {{ noticia.ultima_modificacion }}</h4>
+        <h5>Escrito por {{ noticia.autor }} </h4>
+        <h5>Creada el día : {{ noticia.fecha_creacion }}</h4>
+        <h5>Última modificación : {{ noticia.ultima_modificacion }}</h4>
         {% if user.is_authenticated %}
                 {% if user.id == noticia.autor.id %}
                         <a href= "{% url 'AppBlog:editar_noticia' noticia.pk %}"> [Editar] </a>
@@ -42,13 +42,13 @@
         <br>
         <hr>
         <h3> Comentarios </h3>
-        <br>
         {% if not noticia.comentarios.all %}
         - Aún no hay comentarios.
+        <br>
         {% else %}
                 {% for comentario in noticia.comentarios.all %}
                 <hr>
-                Comentario por {{ comentario.autor }} - {{ comentario.fecha_creacion }}
+                Comentario por <strong>{{ comentario.autor }} - {{ comentario.fecha_creacion }} </strong>
                 <br>
                 {{ comentario.texto|safe }}
                 <hr>
