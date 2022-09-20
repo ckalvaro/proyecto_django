@@ -40,6 +40,23 @@
         <hr>
         - A {{ cantidad_likes }} personas les gusta esta noticia! 
         <br>
+        <hr>
+        <h3> Comentarios </h3>
+        <br>
+        {% if not noticia.comentarios.all %}
+        - Aún no hay comentarios.
+        {% else %}
+                {% for comentario in noticia.comentarios.all %}
+                <hr>
+                Comentario por {{ comentario.autor }} - {{ comentario.fecha_creacion }}
+                <br>
+                {{ comentario.texto|safe }}
+                <hr>
+                {% endfor %}
+        {% endif %}
+        <br>
+        <a href="#">[Agregar un comentario]</a>
+        <br>
         <a href="{% url 'AppBlog:inicio' %}">[Volver al inicio]</a>
 {% endblock %}
 

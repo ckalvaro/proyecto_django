@@ -9,7 +9,7 @@ class Categoria(models.Model):
 
     def __str__(self):
         return self.nombre
-    
+
     def get_absolute_url(self):
         return reverse('AppBlog:inicio')
 
@@ -35,4 +35,11 @@ class Noticia(models.Model):
     def cantidad_likes(self):
         return self.likes.count()
 
+class Comentario(models.Model):
+    noticia = models.ForeignKey(Noticia, on_delete=models.CASCADE, related_name='comentarios')
+    autor = models.ForeignKey(User, on_delete=models.CASCADE)
+    texto = RichTextField(blank = True, max_length=255)
+    fecha_creacion = models.DateTimeField(auto_now_add = True)
 
+    def __str__(self):
+        return "Comentario de %s en Noticia %s" % (self.autor, self.noticia.titulo)
