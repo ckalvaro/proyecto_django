@@ -23,20 +23,16 @@ class Noticia(models.Model):
     #ultima_modificacion se actualiza cada vez que se guarda un cambio en la noticia
     ultima_modificacion = models.DateTimeField(auto_now_add=False, auto_now=True, null = True, blank=True)
     categoria= models.ForeignKey(Categoria, blank=True, null=True, on_delete=models.CASCADE)
+    #un usuario puede tener varios posts, y cada post puede tener varios likes
+    likes = models.ManyToManyField(User, related_name='noticia_likes')
 
-    def __str__(self):
+    def str(self):
         return self.titulo + " por " + str(self.autor)
-    
+
     def get_absolute_url(self):
         return reverse('AppBlog:detalle', args=(str(self.id)))
 
-class Usuario(models.Model):
-    nombre = models.CharField(max_length=50)
-    apellido = models.CharField(max_length=50)
-    email = models.EmailField(max_length=50)
-    nombre_de_usuario = models.CharField(max_length = 80)
-    # contraseña1=models.CharField(max_length = 20)
-    # contraseña2=models.CharField(max_length = 20)
+    def cantidad_likes(self):
+        return self.likes.count()
 
-    def  __str__(self):
-        return str(self.nombre_de_usuario)
+

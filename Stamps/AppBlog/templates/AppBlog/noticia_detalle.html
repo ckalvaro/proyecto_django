@@ -8,12 +8,38 @@
         <h1>{{ noticia.titulo }}</h1>
         <h2>{{ noticia.subtitulo }}</h2>
         <h3>{{ noticia.cuerpo|safe }}</h3>
-        <h4>Escrito por {{ noticia.autor }}</h4>
+        <h4>Escrito por {{ noticia.autor }} </h4>
         <h4>Creada el día : {{ noticia.fecha_creacion }}</h4>
         <h4>Última modificación : {{ noticia.ultima_modificacion }}</h4>
-        <a href= "{% url 'AppBlog:editar_noticia' noticia.pk %}"> [Editar] </a>
-        <a href= "{% url 'AppBlog:eliminar_noticia' noticia.pk %}"> [Eliminar] </a>
-        <br>
-        <a href="{% url 'AppBlog:inicio' %}">Volver al inicio</a>
+        {% if user.is_authenticated %}
+                {% if user.id == noticia.autor.id %}
+                        <a href= "{% url 'AppBlog:editar_noticia' noticia.pk %}"> [Editar] </a>
+                        <a href= "{% url 'AppBlog:eliminar_noticia' noticia.pk %}"> [Eliminar] </a>
+                        <br>
+                {% endif %}
+        {% endif %}
+        <hr>
+        {% if user.is_authenticated %}
+                {% if likeado %}
+                <form action="{% url 'AppBlog:like_noticia' noticia.pk %}" method="POST">
+                {% csrf_token %}
+                        <button type="submit" name="noticia_like" value="{{ noticia.id }}" class="btn btn-secondary btn-sm"> 
+                        Ya no me gusta
+                        </button>
+                </form>
 
+                {% else %}
+                <form action="{% url 'AppBlog:like_noticia' noticia.pk %}" method="POST">
+                {% csrf_token %}
+                        <button type="submit" name="noticia_like" value="{{ noticia.id }}" class="btn btn-primary btn-sm"> 
+                        Me gusta
+                        </button>
+                </form>
+                {% endif %}
+        {% endif %}
+        <hr>
+        - A {{ cantidad_likes }} personas les gusta esta noticia! 
+        <br>
+        <a href="{% url 'AppBlog:inicio' %}">[Volver al inicio]</a>
 {% endblock %}
+

@@ -1,5 +1,5 @@
 from django import forms
-from AppBlog.models import Noticia, Usuario, Categoria
+from AppBlog.models import Noticia
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 
@@ -14,19 +14,6 @@ class FormularioNoticia(forms.ModelForm):
             'cuerpo': forms.Textarea(attrs={'class': 'form-control'}),
         }
 
-class FormularioUsuario(forms.ModelForm):
-    class Meta:
-        model = Usuario
-        fields = ['nombre', 'apellido', 'email', 'nombre_de_usuario']
-
-        # widgets = {
-        #     'nombre' : forms.TextInput(attrs={'class' : 'form-control'}),
-        #     'apellido' : forms.TextInput(attrs={'class' : 'form-control'}),
-        #     'email' : forms.EmailField(attrs={'class' : 'form-control'}),
-        #     'nombre_de_usuario' : forms.TextInput(attrs={'class' : 'form-control'}),
-        #     'contraseña1' : forms.TextInput(attrs={'class' : 'form-control'}),
-        #     'contraseña2' : forms.TextInput(attrs={'class' : 'form-control'}),
-        # }
 
 class RegistroDeUsuario(UserCreationForm):
     username = forms.CharField(label = "Nombre de usuario")

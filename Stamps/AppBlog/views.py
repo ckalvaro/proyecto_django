@@ -1,15 +1,13 @@
-from django.shortcuts import render, redirect
-from AppBlog.models import Noticia
-from AppBlog.forms import FormularioNoticia
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import DetailView, UpdateView, ListView, DeleteView, CreateView
 from django.contrib.auth.decorators import login_required
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.shortcuts import render
-from AppBlog.models import Noticia, Usuario
+from AppBlog.models import Noticia
 from AppBlog.forms import FormularioNoticia, RegistroDeUsuario, InicioDeUsuario, UserEditForm
 from AppBlog.models import Categoria
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
+from django.http import HttpResponseRedirect
 
 # Create your views here.
 class inicio(ListView):
@@ -20,8 +18,19 @@ class inicio(ListView):
 class noticia_detalle_view(DetailView):
     model = Noticia
     template_name = 'AppBlog/noticia_detalle.html'
+    def get_context_data(self, *args, **kwargs):
+        context = super(noticia_detalle_view, self).get_context_data(**kwargs)
+        #esto accede a la noticia con ID == a la noticia del detalle
+        datos_noticia = get_object_or_404(Noticia, id=self.kwargs['pk'])
+        likeado = False
+        likes = datos_noticia.cantidad_likes()
+        if datos_noticia.likes.filter(id=self.request.user.id).exists():
+            likeado = True
+        context["cantidad_likes"] = likes
+        context["likeado"] = likeado 
+        return context
 
-@login_required
+#@login_required
 def form_noticias(request):
     if request.method == 'POST':
         form = FormularioNoticia(request.POST)
@@ -54,77 +63,17 @@ def noticias(request):
     noticias = Noticia.objects.all()
     return render(request, 'AppBlog/noticias.html', {'noticias':noticias})
 
-# def form_usuarios(request):
-#     if request.method == 'POST':
-#         form = RegistroDeUsuario(request.POST)
-#         # if form.is_valid():
-#         #     info = form.cleaned_data
-#         #     nombre = info.get('nombre')
-#         #     apellido = info.get('apellido')
-#         #     email = info.get('email')
-#         #     nombre_de_usuario = info.get('nombre_de_usuario')
-#         #     contraseña1 = info.get('contrseña1')
-#         #     contraseña2 = info.get('contrseña2')
-#         #     usuario = Usuario (nombre = nombre, apellido = apellido, email = email, nombre_de_usuario = nombre_de_usuario, contraseña1 = contraseña1)
-#         #     usuario.save()
-#         #     mensaje = "Carga exitosa"
-#         #     return render(request, 'AppBlog/formulario_usuario.html', {'mensaje':mensaje})
-#         if form.is_valid():
-#             username = form.cleaned_data["username"]
-#             form.save()
-#             return render (request, 'AppBlog.html', {"mensaje" :  f"Usuario {username} creado"})
-#     else:
-#         form = RegistroDeUsuario()
-#         mensaje = "Rellene el formulario"
-#         return render(request, 'AppBlog/formulario_usuario.html', {'mensaje':mensaje, 'form':form})
+def like_noticia(request, pk):
+    noticia = get_object_or_404(Noticia, id = request.POST.get('noticia_like'))
+    likeado = False
+    if noticia.likes.filter(id=request.user.id).exists():
+        noticia.likes.remove(request.user)
+        likeado = False
+    else:
+        noticia.likes.add(request.user)
+        likeado = True
+    return HttpResponseRedirect(reverse('AppBlog:detalle' , args=(str(pk))))
 
-
-# def usuarios(request):
-#     usuarios = Usuario.objects.all()
-#     return render(request, 'AppBlog/usuarios.html', {'usuarios':usuarios})
-
-
-# def eliminar_usuario(request, id):
-#     usuario = Usuario.objects.get(id = id)
-#     usuario.delete()
-#     usuarios=Usuario.objects.all()
-#     return render(request, 'AppBlog/usuarios.html', {'usuarios': usuarios})
-
-
-# def editar_usuario(request, id):
-#     usuario=Usuario.objects.get(id = id)
-#     if request.method == "POST":
-#         form = RegistroDeUsuario(request.POST)
-#         if form.is_valid():
-#             info = form.cleaned_data
-#             usuario.nombre = info["nombre"]
-#             usuario.apellido = info["apellido"]
-#             usuario.email = info["email"]
-#             usuario.nombre_de_usuario = info["nombre_de_usuario"]
-#             usuario.contraseña1 = info["contraseña1"]
-#             usuario.save()
-#             usuarios=Usuario.objects.all()
-#             mensaje = "Usuario editado exitosamente"
-#             return render(request, 'AppBlog/usuarios.html', {'usuarios': usuarios, 'mensaje': mensaje})
-
-#     else:
-#         form = RegistroDeUsuario( initial = { 
-#             "nombre" : usuario.nombre, 
-#             "apellido" : usuario.apellido,
-#             "email" : usuario.email,
-#             "nombre_de_usuario" : usuario.nombre_de_usuario,
-#             "contraseña1" : usuario.contraseña1, 
-        
-#         })
-
-#     return render (request, 'AppBlog/editar_usuario.html', {
-#         "formulario": form, 
-#         "nombre" : usuario.nombre,
-#         "id" : usuario.id, 
-#         # "apellido" : usuario.apellido,    
-#         # "email" : usuario.email,
-#         # "nombre_de_usuario" : usuario.nombre_de_usuario,
-#     })
 
 def login_view(request):
     if request.method == "POST":
