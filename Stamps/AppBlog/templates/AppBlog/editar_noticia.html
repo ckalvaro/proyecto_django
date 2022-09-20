@@ -6,8 +6,8 @@ Editar Noticia
 
 {% block contenido_que_cambia %}
 
-    {% if form != null %}
-
+{% if user.is_authenticated %}
+        {% if user.id == noticia.autor.id %}
 
             <div class="text-center mb-5">
                 <h2 class="fw-bolder">Edición de Noticia</h2>
@@ -22,14 +22,16 @@ Editar Noticia
                             <input class= "btn btn-primary btn-lg px-4 me-sm-3" type="submit" value="Editar">
 
                     </form>
-            
+
             </div>
+        {% else %} 
+        <h3> Usted no tiene permiso para editar esta noticia </h3>
+        {% endif %}
+{% else %}
 
-    {% else %}
-
-            <h2 class="fw-bolder msj-form-carga"> {{ mensaje }} </h2>
-            <a class="btn btn-primary btn-lg px-4" href=" {% url 'form_noticia' %}"> Crear otra noticia </a>
-            <a class="btn btn-primary btn-lg px-4" href=" {% url 'noticias' %}"> Ver Noticias </a>
+            <h2 class="fw-bolder msj-form-carga"> Para editar una noticia debes iniciar sesión </h2>
+            <a class="btn btn-primary btn-lg px-4" href=" {% url 'login' %}"> Login  </a>
+            <a class="btn btn-primary btn-lg px-4" href=" {% url 'usuarios:registro' %}"> Registro </a>
 
     {% endif %}
 
