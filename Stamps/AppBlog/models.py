@@ -26,7 +26,7 @@ class Noticia(models.Model):
     #un usuario puede tener varios posts, y cada post puede tener varios likes
     likes = models.ManyToManyField(User, related_name='noticia_likes')
 
-    def str(self):
+    def __str__(self):
         return self.titulo + " por " + str(self.autor)
 
     def get_absolute_url(self):
@@ -38,7 +38,7 @@ class Noticia(models.Model):
 class Comentario(models.Model):
     noticia = models.ForeignKey(Noticia, on_delete=models.CASCADE, related_name='comentarios')
     autor = models.ForeignKey(User, on_delete=models.CASCADE)
-    texto = RichTextField(blank = True, max_length=255)
+    texto = models.TextField(blank = True, max_length=255)
     fecha_creacion = models.DateTimeField(auto_now_add = True)
 
     def __str__(self):

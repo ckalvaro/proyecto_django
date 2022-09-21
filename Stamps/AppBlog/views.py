@@ -3,7 +3,7 @@ from django.views.generic import DetailView, UpdateView, ListView, DeleteView, C
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy, reverse
 from AppBlog.models import Noticia
-from AppBlog.forms import FormularioNoticia, RegistroDeUsuario, InicioDeUsuario, UserEditForm
+from AppBlog.forms import FormularioNoticia, RegistroDeUsuario, InicioDeUsuario, UserEditForm, FormularioComentario
 from AppBlog.models import Categoria
 from django.contrib.auth import login, logout, authenticate
 from django.http import HttpResponseRedirect
@@ -126,3 +126,17 @@ def editar_usuario(request):
     else:
         form=UserEditForm(instance=usuario)
         return render (request, 'AppBlog/editar_usuario.html', {"form": form, "usuario": usuario})
+## ARREGLAR
+def form_comentarios(request):
+    if request.method == 'POST':
+        form = FormularioComentario(request.POST)
+        if form.is_valid():
+            comentario = form.save(commit=False)
+            comentario.autor = request.user
+            comentario.save()
+            mensaje = "Carga exitosa"
+            return redirect(noticia_detalle_view())
+    else:
+        form = FormularioComentario()
+        mensaje = "Rellene el formulario"
+        return render(request, 'AppBlog/formulario_comentario.html', {'mensaje':mensaje, 'form':form})

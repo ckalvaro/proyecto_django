@@ -1,5 +1,5 @@
 from django.urls import path
-from AppBlog.views import inicio, noticia_detalle_view, form_noticias, editar_noticia, eliminar_noticia, NuevaCategoriaView, login_view, registro, editar_usuario, like_noticia
+from AppBlog.views import inicio, noticia_detalle_view, form_noticias, editar_noticia, eliminar_noticia, NuevaCategoriaView, login_view, registro, editar_usuario, like_noticia, form_comentarios
 # from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib.auth.views import LogoutView
 
@@ -18,7 +18,8 @@ urlpatterns = [
     path('login/', login_view, name="login"),
     path('registro/', registro, name = 'registro'),
     path('logout/', LogoutView.as_view(template_name ='AppBlog/index.html'), name='logout'),
-    path('noticia/like/<int:pk>', like_noticia, name='like_noticia')
+    path('noticia/like/<int:pk>', like_noticia, name='like_noticia'),
+    path('noticia/nuevo_comentario/', form_comentarios, name='form_comentario'),
 ]
 
 # urlpatterns += staticfiles_urlpatterns()
