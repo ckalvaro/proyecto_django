@@ -19,7 +19,7 @@ urlpatterns = [
     path('registro/', registro, name = 'registro'),
     path('logout/', LogoutView.as_view(template_name ='AppBlog/index.html'), name='logout'),
     path('noticia/like/<int:pk>', like_noticia, name='like_noticia'),
-    path('noticia/nuevo_comentario/', form_comentarios, name='form_comentario'),
+    path('noticia/<int:pk>/nuevo_comentario', form_comentarios.as_view(), name='form_comentario'),
 ]
 
 # urlpatterns += staticfiles_urlpatterns()

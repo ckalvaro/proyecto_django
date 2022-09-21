@@ -1,7 +1,7 @@
 {% extends "AppBlog/1padre.html" %}
 {% load static %}
 {% block title %}
-Formulario de Noticias
+Comentarios
 {% endblock %}
 
 {% block contenido_que_cambia %}
@@ -16,7 +16,8 @@ Formulario de Noticias
 
             <div class="form-container">
 
-                    <form method="post" action="{% url 'AppBlog:form_noticia' %}" class="form-carga"> {% csrf_token %}
+                    <form method="POST"> 
+                                {% csrf_token %}
                                 {{ form.media }}
                                 {{ form.as_p }}
                             <input class= "btn btn-primary btn-lg px-4 me-sm-3" type="submit" value="Comentario">
@@ -27,7 +28,7 @@ Formulario de Noticias
 
     {% else %}
 
-        <h2 class="fw-bolder msj-form-carga"> Para crear una noticia debes iniciar sesión </h2>
+        <h2 class="fw-bolder msj-form-carga"> Para crear un comentario debes iniciar sesión </h2>
         <a class="btn btn-primary btn-lg px-4" href=" {% url 'login' %}"> Login  </a>
         <a class="btn btn-primary btn-lg px-4" href=" {% url 'usuarios:registro' %}"> Registro </a>
 

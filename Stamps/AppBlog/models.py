@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from ckeditor.fields import RichTextField
 
 # Create your models here.
@@ -43,3 +43,8 @@ class Comentario(models.Model):
 
     def __str__(self):
         return "Comentario de %s en Noticia %s" % (self.autor, self.noticia.titulo)
+        
+    def get_success_url(self):
+        return reverse_lazy('AppBlog:detalle', kwargs={'pk': self.kwargs['pk']})
+
+
