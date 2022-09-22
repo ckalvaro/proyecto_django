@@ -50,6 +50,10 @@ class NuevaCategoriaView(CreateView):
     template_name = 'AppBlog/nueva_categoria.html'
     fields = '__all__'
 
+def lista_categoria(request, cat):
+    noticias_por_categoria = Noticia.objects.filter(categoria=Categoria.objects.get(nombre=cat)).order_by('-fecha_creacion')
+    return render(request, 'AppBlog/categoria.html', {'lista_noticias':noticias_por_categoria})
+
 class editar_noticia(UpdateView):
     model = Noticia
     template_name = 'AppBlog/editar_noticia.html'
@@ -59,9 +63,7 @@ class eliminar_noticia(DeleteView):
     model = Noticia
     template_name = 'AppBlog/eliminar_noticia.html'
     success_url = reverse_lazy('AppBlog:inicio')
-def noticias(request):
-    noticias = Noticia.objects.all()
-    return render(request, 'AppBlog/noticias.html', {'noticias':noticias})
+
 
 def like_noticia(request, pk):
     noticia = get_object_or_404(Noticia, id = request.POST.get('noticia_like'))

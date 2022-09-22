@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from .views import inicio_proyecto
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls, name= 'admin'),
     path('', inicio_proyecto, name='inicio_proyecto'),
     path('AppBlog/', include('AppBlog.urls'), name='blog'),
 ]

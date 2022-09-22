@@ -1,14 +1,14 @@
 {% extends "AppBlog/1padre.html" %}
 {% load static %}
 {% block title %}
-Todas las Noticias
+Categoria {{ noticia.categoria }}
 {% endblock %}
 
 {% block contenido_que_cambia %}
-{% for noticia in object_list %}
+{% for noticia in lista_noticias %}
 <div class="noticia-container"> <!-- MEJORAR ESTOO -->
     <h1><a href= "{% url 'AppBlog:detalle' noticia.pk %}">{{ noticia.titulo }} </a></h1> <!-- Si apreta el titulo va al detalle -->
-    <h1><a href= "{% url 'AppBlog:lista_categoria' noticia.categoria %}"> --{{ noticia.categoria }} </a></h1>
+    <h1><a href= "#"> --{{ noticia.categoria }} </a></h1>
     <h2>{{ noticia.subtitulo }}</h2>
     <h6>Escrito por {{ noticia.autor }}, el día {{ noticia.fecha_creacion }}</h6>
     {% if user.is_authenticated %}
