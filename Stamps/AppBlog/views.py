@@ -52,7 +52,7 @@ class NuevaCategoriaView(CreateView):
 
 def lista_categoria(request, cat):
     noticias_por_categoria = Noticia.objects.filter(categoria=Categoria.objects.get(nombre=cat)).order_by('-fecha_creacion')
-    categoria_nombre = cat
+    categoria_nombre = cat.title()
     return render(request, 'AppBlog/categoria.html', {'lista_noticias':noticias_por_categoria, 'categoria':categoria_nombre})
 
 class editar_noticia(UpdateView):

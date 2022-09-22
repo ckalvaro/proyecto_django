@@ -5,10 +5,11 @@ Categoria {{ categoria }}
 {% endblock %}
 
 {% block contenido_que_cambia %}
+<h1> Todas las noticias de {{ categoria }} </h1>
+<hr>
 {% for noticia in lista_noticias %}
 <div class="noticia-container"> <!-- MEJORAR ESTOO -->
     <h1><a href= "{% url 'AppBlog:detalle' noticia.pk %}">{{ noticia.titulo }} </a></h1> <!-- Si apreta el titulo va al detalle -->
-    <h1><a href= "#"> --{{ noticia.categoria }} </a></h1>
     <h2>{{ noticia.subtitulo }}</h2>
     <h6>Escrito por {{ noticia.autor }}, el día {{ noticia.fecha_creacion }}</h6>
     {% if user.is_authenticated %}
@@ -17,6 +18,7 @@ Categoria {{ categoria }}
             <a href= "{% url 'AppBlog:eliminar_noticia' noticia.pk %}"> [Eliminar] </a>
         {% endif %}
     {% endif %}
+    <hr>
 
 </div>
 {% endfor %}
