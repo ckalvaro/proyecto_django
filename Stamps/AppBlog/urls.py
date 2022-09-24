@@ -14,7 +14,7 @@ urlpatterns = [
     path('editar_usuario/', editar_usuario, name = 'editar_usuario'),
     path('login/', login_view, name="login"),
     path('registro/', registro, name = 'registro'),
-    path('logout/', LogoutView.as_view(template_name ='AppBlog/index.html'), name='logout'),
+    path('logout/', LogoutView.as_view(template_name ='AppBlog/login.html'), name='logout'),
     path('noticia/like/<int:pk>', like_noticia, name='like_noticia'),
     #path('Avatar', views.avatar, name= "avatar") --->> CREAR EL VIEW AVATAR
 ]
