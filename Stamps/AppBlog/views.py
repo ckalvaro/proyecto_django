@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import DetailView, UpdateView, ListView, DeleteView, CreateView
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy, reverse
-from AppBlog.forms import FormularioNoticia, RegistroDeUsuario, InicioDeUsuario, UserEditForm
+from AppBlog.forms import FormularioNoticia, RegistroDeUsuario, InicioDeUsuario, UserEditForm, AvatarForm
 from AppBlog.models import Categoria, Avatar, Noticia
 from django.contrib.auth import login, logout, authenticate
 from django.http import HttpResponseRedirect
@@ -41,7 +41,7 @@ def form_noticias(request):
     else:
         form = FormularioNoticia()
         mensaje = "Rellene el formulario"
-        return render(request, 'AppBlog/formulario_noticia.html', {'mensaje':mensaje, 'form':form})
+        return render(request, 'AppBlog/formulario_noticia.html', {'mensaje':mensaje, 'form':form, "imagen": carga_avatar(request)})
 
 class NuevaCategoriaView(CreateView):
     model = Categoria
@@ -128,4 +128,30 @@ def editar_usuario(request):
             return render(request,'AppBlog/inicio_app_blog.html', {"mensaje": "Formulario Inválido", "form": form})
     else:
         form=UserEditForm(instance=usuario)
-        return render (request, 'AppBlog/editar_usuario.html', {"form": form, "usuario": usuario})
+        return render (request, 'AppBlog/editar_usuario.html', {"form": form, "usuario": usuario, "imagen": carga_avatar(request)})
+
+    ## Se hace función para traer la URL del Avatar ##
+
+def carga_avatar(request):
+    lista=Avatar.objects.filter(user=request.user)
+    if len(lista) != 0:
+        imagen=lista[0].imagen.url
+    else:
+        imagen = None
+    return imagen
+
+    ## view para agregar avatar desde el blog
+
+def agregar_avatar(request):
+    if request.method == "POST":
+        form=AvatarForm(request.POST, request.FILES)
+        if form.is_valid():
+            avatar_anterior=Avatar.objects.filter(user=request.user)
+            if (len(avatar_anterior) > 0):
+                avatar_anterior.delete()
+            avatar_nuevo = Avatar(user = request.user, imagen = form.cleaned_data["imagen"])
+            avatar_nuevo.save()
+            return render (request, 'AppBlog/inicio_app_blog.html', {"usuario": request.user, "mensaje": "Avatar cargado"})
+    else:
+        form = AvatarForm()
+    return render (request, 'AppBlog/agregar_avatar.html', {"form": form, "usuario": request.user, "imagen": carga_avatar(request)})

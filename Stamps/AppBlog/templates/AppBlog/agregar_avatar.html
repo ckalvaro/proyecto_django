@@ -1,0 +1,30 @@
+{% extends "AppBlog/1padre.html" %}
+{% load static %}
+{% block title %}
+{% endblock %}
+
+{% block contenido_que_cambia %}
+
+
+            <div class="text-center mb-5">
+                <h2 class="fw-bolder">Avatar de {{ usuario }} </h2>
+            </div>
+
+            <div class="form-container">
+
+                    <form method="POST" action="{% url 'AppBlog:agregar_avatar' %}" class="form-carga" enctype = "multipart/form-data"> {% csrf_token %}
+
+                           
+
+                                {{ form.as_p }}
+
+                           
+
+                            <input class= "btn btn-primary btn-lg px-4 me-sm-3" type="submit" value="Guardar">
+
+                    </form>
+            
+            </div>
+
+
+{% endblock %}
