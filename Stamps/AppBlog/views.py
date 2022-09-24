@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy, reverse
 from AppBlog.models import Noticia
 from AppBlog.forms import FormularioNoticia, RegistroDeUsuario, InicioDeUsuario, UserEditForm
-from AppBlog.models import Categoria
+from AppBlog.models import Categoria, Avatar
 from django.contrib.auth import login, logout, authenticate
 from django.http import HttpResponseRedirect
 
@@ -73,6 +73,10 @@ def like_noticia(request, pk):
         likeado = True
     return HttpResponseRedirect(reverse('AppBlog:detalle' , args=(str(pk))))
 
+# def avatar(request):
+#     if request.method == "POST":
+#         formulario = Avatar(request.POST, request.FILES)
+#         if formulario.is_valid()
 
 def login_view(request):
     if request.method == "POST":
