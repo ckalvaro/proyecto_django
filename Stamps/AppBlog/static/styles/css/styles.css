@@ -76,6 +76,17 @@
   }
 }
 
+/*Agregados*/
+
+.img-avatar-nav {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 5rem;
+}
+
+.img-avatar{
+  width: 10rem;
+}
 
 body {
   margin: 0;
