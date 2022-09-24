@@ -45,5 +45,5 @@ class Comentario(models.Model):
         return "Comentario de %s en Noticia %s" % (self.autor, self.noticia.titulo)
 
 class Avatar(models.Model):
-    user = models.ForeignKey(User, on_delete = models.CASCADE)
+    user = models.ForeignKey(User, on_delete = models.CASCADE)  ## se conecta con el usuario
     imagen = models.ImageField(upload_to = "avatares", null = True, blank = True)
