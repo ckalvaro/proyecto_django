@@ -20,3 +20,9 @@ EDITAR CONTRASEÑA
 >>>>>>> 62a2f7b9730906da36a78a9e01f042dbdeb57bb2
 
 Cuando vas al appblog > noticias > crear noticia ---> pincha
+
+
+
+Creo saludo para usuario en navbar. Cuando cierro sesión, se rompe el programa. --> la redirijo a login
+
+cómo hago para cargar la imagen del Avatar si el inicio es una class view
