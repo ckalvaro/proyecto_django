@@ -143,11 +143,11 @@ def editar_usuario(request):
     ## Se hace función para traer la URL del Avatar ##
 
 def carga_avatar(request):
-    lista=Avatar.objects.filter(user=request.user)
-    if len(lista) != 0:
-        imagen=lista[0].imagen.url
-    else:
-        imagen = "/media/avatares/default.png"  ## agregar imagen por default
+    imagen = "/media/avatares/default.png"
+    if request.user.is_authenticated:
+        lista=Avatar.objects.filter(user=request.user)
+        if len(lista) != 0:
+            imagen = lista[0].imagen.url
     return imagen
 
     ## view para agregar avatar desde el blog
