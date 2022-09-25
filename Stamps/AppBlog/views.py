@@ -111,7 +111,7 @@ def registro(request):
             return render (request, 'AppBlog/login.html', {"mensaje" :  f"Usuario {username} creado"})
         else:
             form = RegistroDeUsuario()
-            return render (request, 'AppBlog/registro.html', {"form" : form, "mensaje": "La contraseña debe tener al menos 8 caracteres y combinar números y letras"})
+            return render (request, 'AppBlog/registro.html', {"form" : form, "mensaje": "Formulario Inválido: La contraseña debe tener, al menos, 8 caracteres, combinar números con letras y minúsculas con mayúsculas"})
     else:
         form = RegistroDeUsuario()
         return render (request, 'AppBlog/registro.html', {"form" : form, "mensaje": "Creá tu usuario para ingresar"})
