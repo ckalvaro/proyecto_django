@@ -32,6 +32,7 @@ class InicioDeUsuario(AuthenticationForm):
         
 class UserEditForm(UserCreationForm):
     email = forms.EmailField(label= "Modificar email")
+    username = forms.CharField(label="Cambiar nombre de usuario")
     password1 = forms.CharField(label = "Modificar Contraseña", widget = forms.PasswordInput)
     password2 = forms.CharField(label = "Repita la contraseña", widget = forms.PasswordInput)
 
