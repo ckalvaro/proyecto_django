@@ -10,6 +10,7 @@ Incio de sesión
 <h1>Inicio de sesión</h1>
 
 {{ mensaje }}
+<div class="content1">
 
 <form method="post" action="{% url 'AppBlog:login' %}" class="form-carga"> {% csrf_token %}
 
@@ -18,5 +19,5 @@ Incio de sesión
     <button type = "submit"> Inicio de sesión </button>
 
 </form>
-
+</div>
 {% endblock %}
