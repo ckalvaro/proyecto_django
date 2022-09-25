@@ -48,14 +48,14 @@
         {% else %}
                 {% for comentario in noticia.comentarios.all %}
                 <hr>
-                Comentario por <strong>{{ comentario.autor }} - {{ comentario.fecha_creacion }} </strong>
+                Comentario por <strong>{{ comentario.autor }} - {{ comentario.fecha_creacion }} 
                 <br>
                 {{ comentario.texto|safe }}
                 <hr>
                 {% endfor %}
         {% endif %}
         <br>
-        <a href="#">[Agregar un comentario]</a>
+        <a href="{% url 'AppBlog:form_comentario' noticia.pk %}">[Agregar un comentario]</a>
         <br>
         <a href="{% url 'AppBlog:inicio' %}">[Volver al inicio]</a>
 {% endblock %}

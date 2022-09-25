@@ -28,8 +28,8 @@ Formulario de Noticias
     {% else %}
 
         <h2 class="fw-bolder msj-form-carga"> Para crear una noticia debes iniciar sesión </h2>
-        <a class="btn btn-primary btn-lg px-4" href=" {% url 'login' %}"> Login  </a>
-        <a class="btn btn-primary btn-lg px-4" href=" {% url 'usuarios:registro' %}"> Registro </a>
+        <a class="btn btn-primary btn-lg px-4" href=" {% url 'AppBlog:login' %}"> Login  </a>
+        <a class="btn btn-primary btn-lg px-4" href=" {% url 'AppBlog:registro' %}"> Registro </a>
 
     {% endif %}
 

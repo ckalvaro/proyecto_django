@@ -1,5 +1,5 @@
 from django import forms
-from AppBlog.models import Noticia
+from AppBlog.models import Noticia, Comentario
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 
@@ -12,6 +12,14 @@ class FormularioNoticia(forms.ModelForm):
             'subtitulo': forms.TextInput(attrs={'class': 'form-control'}),
             'categoria': forms.Select(attrs={'class': 'form-control'}),
             'cuerpo': forms.Textarea(attrs={'class': 'form-control'}),
+        }
+
+class FormularioComentario(forms.ModelForm):
+    class Meta:
+        model = Comentario
+        fields = ['texto']
+        widgets = {
+            'texto': forms.Textarea(attrs={'class': 'form-control'}),
         }
 
 

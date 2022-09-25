@@ -6,6 +6,7 @@ from AppBlog.forms import FormularioNoticia, RegistroDeUsuario, InicioDeUsuario,
 from AppBlog.models import Categoria, Avatar, Noticia
 from django.contrib.auth import login, logout, authenticate
 from django.http import HttpResponseRedirect
+from AppBlog.models import Comentario
 
 # Create your views here.
 class inicio(ListView):
@@ -53,6 +54,11 @@ class NuevaCategoriaView(CreateView):
     template_name = 'AppBlog/nueva_categoria.html'
     fields = '__all__'
 
+def lista_categoria(request, cat):
+    noticias_por_categoria = Noticia.objects.filter(categoria=Categoria.objects.get(nombre=cat)).order_by('-fecha_creacion')
+    categoria_nombre = cat.title()
+    return render(request, 'AppBlog/categoria.html', {'lista_noticias':noticias_por_categoria, 'categoria':categoria_nombre})
+
 class editar_noticia(UpdateView):
     model = Noticia
     template_name = 'AppBlog/editar_noticia.html'
@@ -62,9 +68,7 @@ class eliminar_noticia(DeleteView):
     model = Noticia
     template_name = 'AppBlog/eliminar_noticia.html'
     success_url = reverse_lazy('AppBlog:inicio')
-def noticias(request):
-    noticias = Noticia.objects.all()
-    return render(request, 'AppBlog/noticias.html', {'noticias':noticias})
+
 
 def like_noticia(request, pk):
     noticia = get_object_or_404(Noticia, id = request.POST.get('noticia_like'))
@@ -161,3 +165,16 @@ def agregar_avatar(request):
     else:
         form = AvatarForm()
     return render (request, 'AppBlog/agregar_avatar.html', {"form": form, "usuario": request.user, "imagen": carga_avatar(request)})
+
+class form_comentarios(CreateView):
+    model = Comentario
+    form_class = FormularioComentario
+    template_name = 'AppBlog/formulario_comentario.html'
+    def form_valid(self, form):
+        form.instance.autor = self.request.user
+        form.instance.noticia_id = self.kwargs['pk']
+        return super().form_valid(form)
+    def get_success_url(self):
+        return reverse_lazy('AppBlog:detalle', kwargs={'pk': self.kwargs['pk']})
+
+
