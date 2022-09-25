@@ -18,6 +18,7 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(template_name ='AppBlog/login.html'), name='logout'),
     path('noticia/like/<int:pk>', like_noticia, name='like_noticia'),
     path('agregar_avatar/', agregar_avatar, name= 'agregar_avatar'),
+    path('noticia/<int:pk>/nuevo_comentario', form_comentarios.as_view(), name='form_comentario'),
 ]
 
 # urlpatterns += staticfiles_urlpatterns()
