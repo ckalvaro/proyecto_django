@@ -25,4 +25,9 @@ Cuando vas al appblog > noticias > crear noticia ---> pincha
 
 Creo saludo para usuario en navbar. Cuando cierro sesión, se rompe el programa. --> la redirijo a login
 
-cómo hago para cargar la imagen del Avatar si el inicio es una class view
+si no estás logueado y hacés click en crear una noticia, pincha
+
+cuando creás un usuario, te lleva a registro y tene que llevarte a login
+
+cuando editás el usuario, no sale el mensaje del template de editar_usuario
+
