@@ -12,12 +12,12 @@ Incio de sesión
 {{ mensaje }}
 <div class="content1">
 
-<form method="post" action="{% url 'AppBlog:login' %}" class="form-carga"> {% csrf_token %}
+    <form method="post" action="{% url 'AppBlog:login' %}" class="form-carga"> {% csrf_token %}
 
-    {{ form.as_p }}
+        {{ form.as_p }}
 
-    <button type = "submit"> Inicio de sesión </button>
+        <button type="submit"> Inicio de sesión </button>
 
-</form>
+    </form>
 </div>
 {% endblock %}

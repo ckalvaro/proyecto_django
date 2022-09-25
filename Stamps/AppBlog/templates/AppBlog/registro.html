@@ -10,14 +10,14 @@ Registro de Usuarios
 
 {{ mensaje }}
 <div class="content1">
-<form method="post" action="{% url 'AppBlog:registro' %}" class="form-carga"> {% csrf_token %}
+    <form method="post" action="{% url 'AppBlog:registro' %}" class="form-carga"> {% csrf_token %}
 
-    {{ form.as_p }}
+        {{ form.as_p }}
 
-    <button type = "submit"> Registrarse </button>
+        <button type="submit"> Registrarse </button>
 
 
-</form>
+    </form>
 </div>
 
 {% endblock %}
