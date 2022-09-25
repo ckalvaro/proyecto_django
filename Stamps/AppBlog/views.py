@@ -13,6 +13,11 @@ class inicio(ListView):
     template_name = 'AppBlog/inicio_app_blog.html'
     ordering = ['-fecha_creacion'] #ORDENA DE MAYOR A MENOR SEGUN fecha_creacion
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["imagen"] = carga_avatar(self.request)
+        return context
+
 class noticia_detalle_view(DetailView):
     model = Noticia
     template_name = 'AppBlog/noticia_detalle.html'
@@ -94,7 +99,7 @@ def login_view(request):
             return render(request, 'AppBlog/login.html', {"form": form})
     else:
         form=InicioDeUsuario()
-        return render (request, 'AppBlog/login.html', {"form" : form})
+        return render (request, 'AppBlog/login.html', {"form" : form })
 
 
 def registro(request):
@@ -103,13 +108,13 @@ def registro(request):
         if form.is_valid():
             username = form.cleaned_data["username"]
             form.save()
-            return render (request, 'AppBlog/inicio_app_blog.html', {"mensaje" :  f"Usuario {username} creado"})
+            return render (request, 'AppBlog/login.html', {"mensaje" :  f"Usuario {username} creado"})
         else:
             form = RegistroDeUsuario()
             return render (request, 'AppBlog/registro.html', {"form" : form, "mensaje": "La contraseña debe tener al menos 8 caracteres y combinar números y letras"})
     else:
         form = RegistroDeUsuario()
-        return render (request, 'AppBlog/registro.html', {"form" : form, "mensaje": "XXXXX"})
+        return render (request, 'AppBlog/registro.html', {"form" : form, "mensaje": "Creá tu usuario para ingresar"})
 
 
 @login_required
@@ -119,13 +124,14 @@ def editar_usuario(request):
         form=UserEditForm(request.POST)
         if form.is_valid():
             info=form.cleaned_data
+            usuario.username=info["username"]
             usuario.email=info["email"]
             usuario.password1=info["password1"]
             usuario.password2=info["password2"]
             usuario.save()
             return render (request, 'AppBlog/inicio_app_blog.html', {"mensaje": f"Perfil de {usuario} editado"})
         else:
-            return render(request,'AppBlog/inicio_app_blog.html', {"mensaje": "Formulario Inválido", "form": form})
+            return render(request,'AppBlog/editar_usuario.html', {"mensaje": "Formulario Inválido", "form": form})
     else:
         form=UserEditForm(instance=usuario)
         return render (request, 'AppBlog/editar_usuario.html', {"form": form, "usuario": usuario, "imagen": carga_avatar(request)})
@@ -137,7 +143,7 @@ def carga_avatar(request):
     if len(lista) != 0:
         imagen=lista[0].imagen.url
     else:
-        imagen = None
+        imagen = "/media/avatares/default.png"  ## agregar imagen por default
     return imagen
 
     ## view para agregar avatar desde el blog
