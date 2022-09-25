@@ -88,6 +88,14 @@
   width: 10rem;
 }
 
+.errorlist {
+
+  display: none;
+}
+
+
+/*Fin agregados*/
+
 body {
   margin: 0;
   font-family: var(--bs-body-font-family);

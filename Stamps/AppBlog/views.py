@@ -131,7 +131,7 @@ def editar_usuario(request):
             usuario.save()
             return render (request, 'AppBlog/inicio_app_blog.html', {"mensaje": f"Perfil de {usuario} editado"})
         else:
-            return render(request,'AppBlog/editar_usuario.html', {"mensaje": "Formulario Inválido", "form": form})
+            return render(request,'AppBlog/editar_usuario.html', {"mensaje": "Formulario Inválido: La contraseña debe tener, al menos, 8 caracteres, combinar números con letras y minúsculas con mayúsculas", "form": form})
     else:
         form=UserEditForm(instance=usuario)
         return render (request, 'AppBlog/editar_usuario.html', {"form": form, "usuario": usuario, "imagen": carga_avatar(request)})

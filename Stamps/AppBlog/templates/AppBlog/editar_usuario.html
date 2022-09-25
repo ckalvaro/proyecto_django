@@ -10,7 +10,15 @@
                 <h2 class="fw-bolder">Edición de {{ usuario }} </h2>
             </div>
 
+            {% if form.is_valid == False %}
+
+            {{ mensaje }}
+
+            {% endif %}
+
             <div class="form-container">
+
+                    <a href="{% url 'AppBlog:agregar_avatar' %}"><img class= "img-avatar-nav" src="{{ imagen }}" alt=" "> </a>
 
                     <form method="POST" action="{% url 'AppBlog:editar_usuario' %}" class="form-carga"> {% csrf_token %}
 
@@ -23,6 +31,7 @@
                             <input class= "btn btn-primary btn-lg px-4 me-sm-3" type="submit" value="Guardar">
 
                     </form>
+
             
             </div>
 
