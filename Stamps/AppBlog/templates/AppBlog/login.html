@@ -9,7 +9,12 @@ Incio de sesión
 
 <h1>Inicio de sesión</h1>
 
+{% if form.is_valid == False %}
+
 {{ mensaje }}
+
+{% endif %}
+
 <div class="conten-box">
 <div class="content1">
 
