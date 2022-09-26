@@ -6992,6 +6992,7 @@ textarea.form-control-lg {
 .mx-auto {
   margin-right: auto !important;
   margin-left: auto !important;
+  justify-content: center !important;
 }
 
 .my-0 {
