@@ -8,8 +8,8 @@ Todas las Noticias
 {% for noticia in object_list %}
 <div class="noticia-container"> <!-- MEJORAR ESTOO -->
     <h1><a href= "{% url 'AppBlog:detalle' noticia.pk %}">{{ noticia.titulo }} </a></h1> <!-- Si apreta el titulo va al detalle -->
-    <h1><a href= "{% url 'AppBlog:lista_categoria' noticia.categoria %}"> --{{ noticia.categoria }} </a></h1>
-    <h2>{{ noticia.subtitulo }}</h2>
+    <h4><a href= "{% url 'AppBlog:lista_categoria' noticia.categoria %}"> --{{ noticia.categoria }} </a></h1>
+    <p class= "noticia-subtitulo">{{ noticia.subtitulo }}</p>
     <h6>Escrito por {{ noticia.autor }}, el día {{ noticia.fecha_creacion }}</h6>
     {% if user.is_authenticated %}
         {% if user.id == noticia.autor.id %}
