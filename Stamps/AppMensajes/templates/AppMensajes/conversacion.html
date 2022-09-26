@@ -40,16 +40,18 @@
     {% endfor %}
     <div class="row">
         <div class="card col-md-12 p-3 shadow-sm">
+            <div class="mx-auto">
             <form method="POST" action="{% url 'AppMensajes:crear_mensaje' conversacion.pk %}">
-                {% csrf_token %}
-                {{ formulario.media }}
-                {{ formulario.as_p }}
-                    <div class="d-grid gap-2 mt-3">
+                    {% csrf_token %}
+                    {{ formulario.media }}
+                    {{ formulario.as_p }}
+                <div class="d-grid gap-2 mt-3">
                     <button class="btn btn-success" type="submit">
                         Enviar Mensaje
                     </button>
                 </div>
             </form>
+            </div>
         </div>
     </div>
 </div>
