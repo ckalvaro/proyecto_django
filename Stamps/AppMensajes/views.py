@@ -4,9 +4,12 @@ from django.views import View
 from .models import Conversacion, Mensaje
 from .forms import FormularioConversacion, FormularioMensaje
 from django.contrib.auth.models import User
+from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
-class ListConversacion(View):
+class ListConversacion(LoginRequiredMixin, View):
+    login_url = 'AppBlog:login'
+    redirect_field_name = 'AppBlog:login'
     def get(self, request, *args, **kwargs):
         conversaciones = Conversacion.objects.filter(Q(user=request.user) | Q(receiver = request.user))
         context = {
@@ -14,7 +17,9 @@ class ListConversacion(View):
         }
         return render(request, 'AppMensajes/inbox.html', context)
 
-class CrearConversacion(View):
+class CrearConversacion(LoginRequiredMixin, View):
+    login_url = 'AppBlog:login'
+    redirect_field_name = 'AppBlog:login'
     def get(self, request, *args, **kwargs):
         form = FormularioConversacion()
         context = {'formulario': form}
@@ -41,7 +46,9 @@ class CrearConversacion(View):
         except:
             return redirect('AppMensajes:nueva_conversacion')
 
-class ConversacionView(View):
+class ConversacionView(LoginRequiredMixin, View):
+    login_url = 'AppBlog:login'
+    redirect_field_name = 'AppBlog:login'
     def get(self, request, pk, *args, **kwargs):
         form = FormularioMensaje()
         conversacion = Conversacion.objects.get(pk = pk)
