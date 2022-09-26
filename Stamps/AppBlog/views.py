@@ -97,10 +97,9 @@ def login_view(request):
                 login (request, usuario_logueado)
                 return render (request, 'AppBlog/login.html', {"mensaje" : f"Bienvenido {usuario_logueado}"} )
             else:
-                mensaje = "Usuario o contraseña incorrectos"
-                return render (request, 'AppBlog/login.html', {"mensaje": mensaje, "form" : form})
+                return render (request, 'AppBlog/login.html', {"form" : form})
         else:
-            return render(request, 'AppBlog/login.html', {"form": form})
+            return render(request, 'AppBlog/login.html', {"mensaje": "Usuario o contraseña incorrectos","form": form})
     else:
         form=InicioDeUsuario()
         return render (request, 'AppBlog/login.html', {"form" : form })
