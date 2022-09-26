@@ -18,8 +18,11 @@ class FormularioComentario(forms.ModelForm):
     class Meta:
         model = Comentario
         fields = ['texto']
+        labels = {
+            'texto':''
+        }
         widgets = {
-            'texto': forms.Textarea(attrs={'class': 'form-control'}),
+            'texto': forms.Textarea()#attrs={'class': 'form-control'}),
         }
 
 

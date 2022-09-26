@@ -5,6 +5,8 @@ from .models import Conversacion, Mensaje
 from .forms import FormularioConversacion, FormularioMensaje
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
+from AppBlog.views import carga_avatar
+#importamos carga_avatar para poder ver la foto de perfil en el navbar, aún en una aplicación distinta
 # Create your views here.
 
 class ListConversacion(LoginRequiredMixin, View):
@@ -13,7 +15,8 @@ class ListConversacion(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         conversaciones = Conversacion.objects.filter(Q(user=request.user) | Q(receiver = request.user))
         context = {
-            'conversaciones': conversaciones
+            'conversaciones': conversaciones,
+            'imagen': carga_avatar(request)
         }
         return render(request, 'AppMensajes/inbox.html', context)
 
@@ -22,7 +25,10 @@ class CrearConversacion(LoginRequiredMixin, View):
     redirect_field_name = 'AppBlog:login'
     def get(self, request, *args, **kwargs):
         form = FormularioConversacion()
-        context = {'formulario': form}
+        context = {
+            'formulario': form,
+            'imagen': carga_avatar(request)
+        }
         return render(request, 'AppMensajes/nueva_conversacion.html', context)
 
     def post(self, request, *args, **kwargs):
@@ -56,7 +62,8 @@ class ConversacionView(LoginRequiredMixin, View):
         context = {
             'conversacion': conversacion,
             'formulario': form,
-            'lista_mensajes': lista_mensajes
+            'lista_mensajes': lista_mensajes,
+            'imagen': carga_avatar(request)
         }
 
         return render(request, 'AppMensajes/conversacion.html', context)

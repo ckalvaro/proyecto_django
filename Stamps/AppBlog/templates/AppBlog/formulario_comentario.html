@@ -14,8 +14,8 @@ Comentarios
                 <p class="lead mb-0">Completá el siguiente formulario</p>
             </div>
 
+        <div class="text-center mb-5">
             <div class="form-container">
-
                     <form method="POST"> 
                                 {% csrf_token %}
                                 {{ form.media }}
@@ -23,8 +23,8 @@ Comentarios
                             <input class= "btn btn-primary btn-lg px-4 me-sm-3" type="submit" value="Comentario">
 
                     </form>
-
             </div>
+        </div>
 
     {% else %}
 
