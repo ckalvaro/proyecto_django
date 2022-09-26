@@ -1,0 +1,33 @@
+{% extends "AppBlog/1padre.html" %}
+
+{% block contenido_que_cambia %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 p-5">
+            <a href="{% url 'AppMensajes:inbox' %}" class="btn btn-light">Volver al Inbox </a>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-12 p-5">
+            <h3> Iniciar una conversacion </h3>
+        </div>
+    </div>
+
+
+    <div class="row justify-content-center mt-3 mb-5">
+        <div class="col-md-12 col-sm-12">
+            <form method="POST" name="username">
+                {% csrf_token %}
+                <p> Ingrese el nombre de usuario del destinatario </p>
+                {{ formulario.as_p }}
+                <div class="d-grid gap-2">
+                    <button class="btn btn-success mt-3" type="submit">
+                        Continuar
+                    </button> 
+                </div>
+            </form>
+        </div>
+    </div>  
+</div>
+{% endblock %}
