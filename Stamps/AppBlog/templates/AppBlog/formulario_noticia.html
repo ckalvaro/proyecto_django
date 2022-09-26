@@ -8,16 +8,10 @@ Formulario de Noticias
 
 {% if user.is_authenticated %}
 
-
-<div class="text-center mb-5">
-    <h2 class="fw-bolder">Formulario Noticia</h2>
-    <p class="lead mb-0">Completá el siguiente formulario</p>
-</div>
-
 <div class="form-container">
     <div class="notice box">
-        <h1 class="titleNotice">Formulario para Publicar una Noticia</h1>
-        <p class="subTitleN">Complete el siguiente Formulario</p>
+        <h1 class="titleNotice">Formulario para publicar una noticia</h1>
+        <p class="subTitleN">Complete el siguiente formulario</p>
 
         <form method="post" action="{% url 'AppBlog:form_noticia' %}" class="form-carga"> {% csrf_token %}
             {{ form.media }}
