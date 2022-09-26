@@ -7,32 +7,33 @@ Editar Noticia
 {% block contenido_que_cambia %}
 
 {% if user.is_authenticated %}
-        {% if user.id == noticia.autor.id %}
+{% if user.id == noticia.autor.id %}
 
-            <div class="text-center mb-5">
-                <h2 class="fw-bolder">Edición de Noticia</h2>
-                <p class="lead mb-0">Completá el siguiente formulario</p>
-            </div>
+<div class="text-center mb-5">
+    <h2 class="fw-bolder">Edición de Noticia</h2>
+    <p class="lead mb-0">Completá el siguiente formulario</p>
+</div>
 
-            <div class="form-container">
+<div class="form-container">
+    <div class="notice-box">
 
-                    <form method="post" class="form-carga"> {% csrf_token %}
-                        {{ form.media }}
-                        {{ form.as_p }}
-                            <input class= "btn btn-primary btn-lg px-4 me-sm-3" type="submit" value="Editar">
+        <form method="post" class="form-carga"> {% csrf_token %}
+            {{ form.media }}
+            {{ form.as_p }}
+            <input class="btn btn-primary btn-lg px-4 me-sm-3" type="submit" value="Editar">
 
-                    </form>
-
-            </div>
-        {% else %} 
-        <h3> Usted no tiene permiso para editar esta noticia </h3>
-        {% endif %}
+        </form>
+    </div>
+</div>
+{% else %}
+<h3> Usted no tiene permiso para editar esta noticia </h3>
+{% endif %}
 {% else %}
 
-            <h2 class="fw-bolder msj-form-carga"> Para editar una noticia debes iniciar sesión </h2>
-            <a class="btn btn-primary btn-lg px-4" href=" {% url 'login' %}"> Login  </a>
-            <a class="btn btn-primary btn-lg px-4" href=" {% url 'usuarios:registro' %}"> Registro </a>
+<h2 class="fw-bolder msj-form-carga"> Para editar una noticia debes iniciar sesión </h2>
+<a class="btn btn-primary btn-lg px-4" href=" {% url 'login' %}"> Login </a>
+<a class="btn btn-primary btn-lg px-4" href=" {% url 'usuarios:registro' %}"> Registro </a>
 
-    {% endif %}
+{% endif %}
 
 {% endblock %}
