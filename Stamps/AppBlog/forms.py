@@ -18,18 +18,21 @@ class FormularioComentario(forms.ModelForm):
     class Meta:
         model = Comentario
         fields = ['texto']
+        labels = {
+            'texto':''
+        }
         widgets = {
-            'texto': forms.Textarea(attrs={'class': 'form-control'}),
+            'texto': forms.Textarea()#attrs={'class': 'form-control'}),
         }
 
 
 class RegistroDeUsuario(UserCreationForm):
-    username = forms.CharField(label = "Nombre de usuario")
-    email = forms.EmailField()
-    password1 = forms.CharField(label = "Contraseña", widget = forms.PasswordInput)
-    password2 = forms.CharField(label = "Repita la contraseña", widget = forms.PasswordInput)
+    username = forms.CharField(label = "Nombre de usuario *")
+    email = forms.EmailField(label = "Correo electrónico *")
+    password1 = forms.CharField(label = "Contraseña *", widget = forms.PasswordInput)
+    password2 = forms.CharField(label = "Repita la contraseña *", widget = forms.PasswordInput)
     web=forms.CharField(required = False, label="Página web")
-    descripcion = forms.CharField(required = False, label = "Podés ingresar una descripción tuya")
+    descripcion = forms.CharField(required = False, label = "Acerca de mí")
 
     class Meta:
         model = User
