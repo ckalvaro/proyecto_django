@@ -13,10 +13,6 @@ Formulario de Noticias
     <div class="noticebox">
         <h1 class="titleNotice">Formulario para Publicar una Noticia</h1>
         <p class="subTitleN">Complete el siguiente Formulario</p>
-
-    
-
-
         <form method="post" action="{% url 'AppBlog:form_noticia' %}" class="form-carga"> {% csrf_token %}
             {{ form.media }}
             {{ form.as_p }}
