@@ -11241,6 +11241,24 @@ header.masthead .site-heading .h1 {
 .post-preview > .post-meta > a {
   text-decoration: none;
 }
+
+.mensaje-enviado {
+  background-color: #f3f3f3;
+  border-radius: 20px;
+  padding:10px 25px;
+  width:auto;
+
+}
+
+.mensaje-recibido {
+  background-color: rgb(1, 196, 240);
+  color: #fff;
+  border-radius: 20px;
+  padding:10px 25px;
+  width:auto;
+  float:right;
+  
+}
 @media (min-width: 992px) {
   .post-preview > a > .post-title {
     font-size: 2.25rem;
