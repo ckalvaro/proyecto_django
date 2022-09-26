@@ -1,0 +1,70 @@
+{% extends "AppBlog/1padre.html" %}
+{% load static %}
+{% block title %}
+{% if conversacion.receiver == request.user %}
+        Conversación con @{{ conversacion.user }}
+    {% else %}
+        Conversación con @{{conversacion.receiver}}
+{% endif %}
+{% endblock %}
+{% block contenido_que_cambia %}
+
+<div class="container">
+    <div class="row">
+        <div class="card col-md-12 mt-5 p-3 shadow-sm">
+            <div class="mx-auto">
+            {% if conversacion.receiver == request.user %}
+                <h5>Conversación con @{{ conversacion.user }} </h5>
+            {% else %}
+                <h5>Conversación con @{{conversacion.receiver}} </h5>
+            {% endif %}
+            </div>
+        </div>
+    </div>
+    
+    {% if lista_mensajes.all.count == 0 %}
+    <div class="row my-5">
+        <div class="col-md-12">
+            <div class="mx-auto">
+            <p> Aún no hay mensajes </p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    {% for mensaje in lista_mensajes %}
+    <div class="row">
+        <div class="col-md-12 my-1">
+            {% if mensaje.sender_user == request.user %}
+                <div class="mensaje-recibido">
+                    <h6> {{mensaje.date }} </h6>
+                    <p> {{ mensaje.body|safe }} </p>
+                </div>
+            {% elif mensaje.receiver_user == request.user %}
+                <div class="mensaje-enviado">
+                    <h6> {{mensaje.date }} </h6>
+                    <p> {{ mensaje.body|safe }} </p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+    <div class="row">
+        <div class="card col-md-12 p-3 shadow-sm">
+            <div class="mx-auto">
+            <form method="POST" action="{% url 'AppMensajes:crear_mensaje' conversacion.pk %}">
+                    {% csrf_token %}
+                    {{ formulario.media }}
+                    {{ formulario.as_p }}
+                <div class="d-grid gap-2 mt-3">
+                    <button class="btn btn-success" type="submit">
+                        Enviar Mensaje
+                    </button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

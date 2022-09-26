@@ -1,0 +1,31 @@
+{% extends "AppBlog/1padre.html" %}
+{% load static %}
+
+{% block contenido_que_cambia %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 p-5">
+            Tus conversaciones
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-3 mb-5">
+        <div class="col-md-12 p-5">
+            <form method="GET" action = "{% url 'AppMensajes:nueva_conversacion' %}">
+                <button class="btn btn-light p-3" type="submit">
+                    Empieza una conversación
+                </button>
+            </form>
+        </div>
+    </div>
+
+    {% for conversacion in conversaciones %}
+    <div class="row mb-3">
+        <div class="card col-md-12 p-5 shadow-sm">
+            <h5> {{ conversacion.user }} - {{ conversacion.receiver }} </h5>
+            <a class="stretched-link" href="{% url 'AppMensajes:conversacion' conversacion.pk %}"></a>
+        </div>
+    </div> 
+    {% endfor %}
+</div>
+{% endblock %}

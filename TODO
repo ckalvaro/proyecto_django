@@ -21,6 +21,8 @@ EDITAR CONTRASEÑA
 
 Cuando vas al appblog > noticias > crear noticia ---> pincha
 
+Cuando iniciás sesión con usuario o contraseña equivocados no pasa nada --> corregido
+
 
 
 Creo saludo para usuario en navbar. Cuando cierro sesión, se rompe el programa. --> la redirijo a login
