@@ -28,6 +28,8 @@ class RegistroDeUsuario(UserCreationForm):
     email = forms.EmailField()
     password1 = forms.CharField(label = "Contraseña", widget = forms.PasswordInput)
     password2 = forms.CharField(label = "Repita la contraseña", widget = forms.PasswordInput)
+    web=forms.CharField(required = False, label="Página web")
+    descripcion = forms.CharField(required = False, label = "Podés ingresar una descripción tuya")
 
     class Meta:
         model = User
@@ -43,6 +45,9 @@ class UserEditForm(UserCreationForm):
     username = forms.CharField(label="Cambiar nombre de usuario")
     password1 = forms.CharField(label = "Modificar Contraseña", widget = forms.PasswordInput)
     password2 = forms.CharField(label = "Repita la contraseña", widget = forms.PasswordInput)
+    web=forms.CharField(label="Modificar página web")
+    descripcion = forms.CharField(label = "Modificar Descripción")
+    
 
     class Meta:
         model = User

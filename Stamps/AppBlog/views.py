@@ -132,6 +132,8 @@ def editar_usuario(request):
             usuario.email=info["email"]
             usuario.password1=info["password1"]
             usuario.password2=info["password2"]
+            usuario.web=info["web"]
+            usuario.descripcion=info["descripcion"]
             usuario.save()
             return render (request, 'AppBlog/inicio_app_blog.html', {"mensaje": f"Perfil de {usuario} editado"})
         else:
