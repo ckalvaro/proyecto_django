@@ -5,28 +5,28 @@ Nueva Categoria
 {% endblock %}
 
 {% block contenido_que_cambia %}
-    {% if form != null %}
+{% if form != null %}
 
 
-            <div class="text-center mb-5">
-                <h2 class="fw-bolder">Formulario Categoría</h2>
-                <p class="lead mb-0">Completá el siguiente formulario</p>
-            </div>
+<div class="text-center mb-5">
+        <h2 class="fw-bolder">Formulario Categoría</h2>
+        <p class="lead mb-0">Completá el siguiente formulario</p>
+</div>
 
-            <div class="form-container">
+<div class="form-container">
 
-                    <form method="post" action="{% url 'AppBlog:form_categoria' %}" class="form-carga"> {% csrf_token %}
-                                {{ form.media }}
-                                {{ form.as_p }}
-                            <input class= "btn btn-primary btn-lg px-4 me-sm-3" type="submit" value="Añadir categoría">
+        <form method="post" action="{% url 'AppBlog:form_categoria' %}" class="form-carga"> {% csrf_token %}
+                {{ form.media }}
+                {{ form.as_p }}
+                <input class="btn btn-primary btn-lg px-4 me-sm-3" type="submit" value="Añadir categoría">
 
-                    </form>
-            
-            </div>
+        </form>
 
-    {% else %}
-            <a class="btn btn-primary btn-lg px-4" href=" {% url 'AppBlog:form_noticia' %}"> Crear otra noticia </a>
+</div>
 
-    {% endif %}
+{% else %}
+<a class="btn btn-primary btn-lg px-4" href=" {% url 'AppBlog:form_noticia' %}"> Crear otra noticia </a>
+
+{% endif %}
 
 {% endblock %}
