@@ -2,9 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import DetailView, UpdateView, ListView, DeleteView, CreateView
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy, reverse
-from AppBlog.models import Noticia
-from AppBlog.forms import FormularioNoticia, RegistroDeUsuario, InicioDeUsuario, UserEditForm, FormularioComentario
-from AppBlog.models import Categoria
+from AppBlog.forms import FormularioNoticia, RegistroDeUsuario, InicioDeUsuario, UserEditForm, AvatarForm, FormularioComentario
+from AppBlog.models import Categoria, Avatar, Noticia
 from django.contrib.auth import login, logout, authenticate
 from django.http import HttpResponseRedirect
 from AppBlog.models import Comentario
@@ -14,6 +13,11 @@ class inicio(ListView):
     model = Noticia
     template_name = 'AppBlog/inicio_app_blog.html'
     ordering = ['-fecha_creacion'] #ORDENA DE MAYOR A MENOR SEGUN fecha_creacion
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["imagen"] = carga_avatar(self.request)
+        return context
 
 class noticia_detalle_view(DetailView):
     model = Noticia
@@ -43,7 +47,7 @@ def form_noticias(request):
     else:
         form = FormularioNoticia()
         mensaje = "Rellene el formulario"
-        return render(request, 'AppBlog/formulario_noticia.html', {'mensaje':mensaje, 'form':form})
+        return render(request, 'AppBlog/formulario_noticia.html', {'mensaje':mensaje, 'form':form, "imagen": carga_avatar(request)})
 
 class NuevaCategoriaView(CreateView):
     model = Categoria
@@ -77,6 +81,10 @@ def like_noticia(request, pk):
         likeado = True
     return HttpResponseRedirect(reverse('AppBlog:detalle' , args=(str(pk))))
 
+# def avatar(request):
+#     if request.method == "POST":
+#         formulario = Avatar(request.POST, request.FILES)
+#         if formulario.is_valid()
 
 def login_view(request):
     if request.method == "POST":
@@ -95,7 +103,7 @@ def login_view(request):
             return render(request, 'AppBlog/login.html', {"form": form})
     else:
         form=InicioDeUsuario()
-        return render (request, 'AppBlog/login.html', {"form" : form})
+        return render (request, 'AppBlog/login.html', {"form" : form })
 
 
 def registro(request):
@@ -104,13 +112,13 @@ def registro(request):
         if form.is_valid():
             username = form.cleaned_data["username"]
             form.save()
-            return render (request, 'AppBlog/inicio_app_blog.html', {"mensaje" :  f"Usuario {username} creado"})
+            return render (request, 'AppBlog/login.html', {"mensaje" :  f"Usuario {username} creado"})
         else:
             form = RegistroDeUsuario()
-            return render (request, 'AppBlog/registro.html', {"form" : form, "mensaje": "La contraseña debe tener al menos 8 caracteres y combinar números y letras"})
+            return render (request, 'AppBlog/registro.html', {"form" : form, "mensaje": "Formulario Inválido: La contraseña debe tener, al menos, 8 caracteres, combinar números con letras y minúsculas con mayúsculas"})
     else:
         form = RegistroDeUsuario()
-        return render (request, 'AppBlog/registro.html', {"form" : form, "mensaje": "XXXXX"})
+        return render (request, 'AppBlog/registro.html', {"form" : form, "mensaje": "Creá tu usuario para ingresar"})
 
 
 @login_required
@@ -120,16 +128,43 @@ def editar_usuario(request):
         form=UserEditForm(request.POST)
         if form.is_valid():
             info=form.cleaned_data
+            usuario.username=info["username"]
             usuario.email=info["email"]
             usuario.password1=info["password1"]
             usuario.password2=info["password2"]
             usuario.save()
             return render (request, 'AppBlog/inicio_app_blog.html', {"mensaje": f"Perfil de {usuario} editado"})
         else:
-            return render(request,'AppBlog/inicio_app_blog.html', {"mensaje": "Formulario Inválido", "form": form})
+            return render(request,'AppBlog/editar_usuario.html', {"mensaje": "Formulario Inválido: La contraseña debe tener, al menos, 8 caracteres, combinar números con letras y minúsculas con mayúsculas", "form": form})
     else:
         form=UserEditForm(instance=usuario)
-        return render (request, 'AppBlog/editar_usuario.html', {"form": form, "usuario": usuario})
+        return render (request, 'AppBlog/editar_usuario.html', {"form": form, "usuario": usuario, "imagen": carga_avatar(request)})
+
+    ## Se hace función para traer la URL del Avatar ##
+
+def carga_avatar(request):
+    imagen = "/media/avatares/default.png"
+    if request.user.is_authenticated:
+        lista=Avatar.objects.filter(user=request.user)
+        if len(lista) != 0:
+            imagen = lista[0].imagen.url
+    return imagen
+
+    ## view para agregar avatar desde el blog
+
+def agregar_avatar(request):
+    if request.method == "POST":
+        form=AvatarForm(request.POST, request.FILES)
+        if form.is_valid():
+            avatar_anterior=Avatar.objects.filter(user=request.user)
+            if (len(avatar_anterior) > 0):
+                avatar_anterior.delete()
+            avatar_nuevo = Avatar(user = request.user, imagen = form.cleaned_data["imagen"])
+            avatar_nuevo.save()
+            return render (request, 'AppBlog/inicio_app_blog.html', {"usuario": request.user, "mensaje": "Avatar cargado"})
+    else:
+        form = AvatarForm()
+    return render (request, 'AppBlog/agregar_avatar.html', {"form": form, "usuario": request.user, "imagen": carga_avatar(request)})
 
 class form_comentarios(CreateView):
     model = Comentario

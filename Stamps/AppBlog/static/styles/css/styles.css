@@ -76,6 +76,26 @@
   }
 }
 
+/*Agregados*/
+
+.img-avatar-nav {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 5rem;
+}
+
+.img-avatar{
+  width: 10rem;
+}
+
+.errorlist {
+
+  display: none;
+}
+
+
+/*Fin agregados*/
+
 body {
   margin: 0;
   font-family: var(--bs-body-font-family);
@@ -11264,3 +11284,4 @@ header.masthead .site-heading .h1 {
     font-size: 2.25rem;
   }
 }
+

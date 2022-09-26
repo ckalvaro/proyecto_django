@@ -6,31 +6,35 @@ Formulario de Noticias
 
 {% block contenido_que_cambia %}
 
-    {% if user.is_authenticated %}
+{% if user.is_authenticated %}
 
 
-            <div class="text-center mb-5">
-                <h2 class="fw-bolder">Formulario Noticia</h2>
-                <p class="lead mb-0">Completá el siguiente formulario</p>
-            </div>
+<div class="text-center mb-5">
+    <h2 class="fw-bolder">Formulario Noticia</h2>
+    <p class="lead mb-0">Completá el siguiente formulario</p>
+</div>
 
-            <div class="form-container">
+<div class="form-container">
+    <div class="notice box">
+        <h1 class="titleNotice">Formulario para Publicar una Noticia</h1>
+        <p class="subTitleN">Complete el siguiente Formulario</p>
 
-                    <form method="post" action="{% url 'AppBlog:form_noticia' %}" class="form-carga"> {% csrf_token %}
-                                {{ form.media }}
-                                {{ form.as_p }}
-                            <input class= "btn btn-primary btn-lg px-4 me-sm-3" type="submit" value="Enviar">
+        <form method="post" action="{% url 'AppBlog:form_noticia' %}" class="form-carga"> {% csrf_token %}
+            {{ form.media }}
+            {{ form.as_p }}
+            <input class="btn btn-primary btn-lg px-4 me-sm-3" type="submit" value="Enviar">
 
-                    </form>
+        </form>
 
-            </div>
+    </div>
+</div>
 
-    {% else %}
+{% else %}
 
-        <h2 class="fw-bolder msj-form-carga"> Para crear una noticia debes iniciar sesión </h2>
-        <a class="btn btn-primary btn-lg px-4" href=" {% url 'AppBlog:login' %}"> Login  </a>
-        <a class="btn btn-primary btn-lg px-4" href=" {% url 'AppBlog:registro' %}"> Registro </a>
+<h2 class="fw-bolder msj-form-carga"> Para crear una noticia debes iniciar sesión </h2>
+<a class="btn btn-primary btn-lg px-4" href=" {% url 'AppBlog:login' %}"> Login </a>
+<a class="btn btn-primary btn-lg px-4" href=" {% url 'AppBlog:registro' %}"> Registro </a>
 
-    {% endif %}
+{% endif %}
 
 {% endblock %}

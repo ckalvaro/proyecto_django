@@ -45,3 +45,7 @@ class Comentario(models.Model):
         return reverse_lazy('AppBlog:detalle', kwargs={'pk': self.kwargs['pk']})
 
 
+
+class Avatar(models.Model):
+    user = models.ForeignKey(User, on_delete = models.CASCADE)  ## se conecta con el usuario
+    imagen = models.ImageField(upload_to = "avatares", default = 'default.png', null = True, blank = True)

@@ -19,3 +19,17 @@ Cuando iniciás sesión, si un dato está mal, debería aparecer un aviso en cas
 EDITAR CONTRASEÑA
 >>>>>>> 62a2f7b9730906da36a78a9e01f042dbdeb57bb2
 
+Cuando vas al appblog > noticias > crear noticia ---> pincha
+
+
+
+Creo saludo para usuario en navbar. Cuando cierro sesión, se rompe el programa. --> la redirijo a login
+
+si no estás logueado y hacés click en crear una noticia, pincha
+
+cuando creás un usuario, te lleva a registro y tene que llevarte a login
+
+cuando editás el usuario, no sale el mensaje del template de editar_usuario
+
+me pincha cuando quiero ai a AppBlog o Mensajes desde el inicio de Stamps. Me marca que el error está en el contexto pasado a a ListView de inicio
+
