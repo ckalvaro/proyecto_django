@@ -31,7 +31,8 @@ class noticia_detalle_view(DetailView):
         if datos_noticia.likes.filter(id=self.request.user.id).exists():
             likeado = True
         context["cantidad_likes"] = likes
-        context["likeado"] = likeado 
+        context["likeado"] = likeado
+        context["imagen"] = carga_avatar(self.request)
         return context
 
 #@login_required
@@ -49,15 +50,10 @@ def form_noticias(request):
         mensaje = "Rellene el formulario"
         return render(request, 'AppBlog/formulario_noticia.html', {'mensaje':mensaje, 'form':form, "imagen": carga_avatar(request)})
 
-class NuevaCategoriaView(CreateView):
-    model = Categoria
-    template_name = 'AppBlog/nueva_categoria.html'
-    fields = '__all__'
-
 def lista_categoria(request, cat):
     noticias_por_categoria = Noticia.objects.filter(categoria=Categoria.objects.get(nombre=cat)).order_by('-fecha_creacion')
     categoria_nombre = cat.title()
-    return render(request, 'AppBlog/categoria.html', {'lista_noticias':noticias_por_categoria, 'categoria':categoria_nombre})
+    return render(request, 'AppBlog/categoria.html', {'lista_noticias':noticias_por_categoria, 'categoria':categoria_nombre, "imagen":carga_avatar(request)})
 
 class editar_noticia(UpdateView):
     model = Noticia
@@ -81,11 +77,6 @@ def like_noticia(request, pk):
         likeado = True
     return HttpResponseRedirect(reverse('AppBlog:detalle' , args=(str(pk))))
 
-# def avatar(request):
-#     if request.method == "POST":
-#         formulario = Avatar(request.POST, request.FILES)
-#         if formulario.is_valid()
-
 def login_view(request):
     if request.method == "POST":
         form = InicioDeUsuario(request, data = request.POST)
@@ -95,7 +86,7 @@ def login_view(request):
             usuario_logueado= authenticate(username = usuario, password = clave)
             if usuario_logueado is not None:
                 login (request, usuario_logueado)
-                return render (request, 'AppBlog/login.html', {"mensaje" : f"Bienvenido {usuario_logueado}"} )
+                return render (request, 'AppBlog/login.html', {"mensaje" : f"Bienvenido {usuario_logueado}", "imagen":carga_avatar(request)} )
             else:
                 return render (request, 'AppBlog/login.html', {"form" : form})
         else:
