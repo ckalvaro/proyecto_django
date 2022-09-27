@@ -3,6 +3,7 @@ from django.db.models import Q
 from django.views import View
 from .models import Conversacion, Mensaje
 from .forms import FormularioConversacion, FormularioMensaje
+from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
 from AppBlog.views import carga_avatar
@@ -50,6 +51,7 @@ class CrearConversacion(LoginRequiredMixin, View):
                 conversacion.save()
                 return redirect('AppMensajes:conversacion', pk = conversacion.pk)
         except:
+            messages.error(request, 'Este usuario no existe')
             return redirect('AppMensajes:nueva_conversacion')
 
 class ConversacionView(LoginRequiredMixin, View):
