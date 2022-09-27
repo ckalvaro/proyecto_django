@@ -8,7 +8,7 @@ Categoria {{ categoria }}
 <h1> Todas las noticias de {{ categoria }} </h1>
 <hr>
 {% for noticia in lista_noticias %}
-<div class="noticia-container"> <!-- MEJORAR ESTOO -->
+<div class="noticia-container">
     <h1><a href= "{% url 'AppBlog:detalle' noticia.pk %}">{{ noticia.titulo }} </a></h1> <!-- Si apreta el titulo va al detalle -->
     <h2>{{ noticia.subtitulo }}</h2>
     <h6>Escrito por {{ noticia.autor }}, el día {{ noticia.fecha_creacion }}</h6>

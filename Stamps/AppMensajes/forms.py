@@ -1,6 +1,5 @@
 from django import forms
 from .models import Conversacion, Mensaje
-from ckeditor.fields import RichTextField
 
 class FormularioConversacion(forms.Form):
     model = Conversacion
@@ -16,15 +15,7 @@ class FormularioMensaje(forms.ModelForm):
         widgets = {
             'body': forms.Textarea(attrs={'class': 'form-control'}),
         }
-        
 
-#class FormularioMensaje(forms.ModelForm):
-    #class Meta:
-        #model = Mensaje
-        #fields = ['body']
-        #widgets = {
-            #'body': forms.TextInput(attrs={'class': 'form-control'}),
-        #}
 
 
     

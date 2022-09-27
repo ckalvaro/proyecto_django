@@ -20,4 +20,3 @@ urlpatterns = [
     path('noticia/<int:pk>/nuevo_comentario', form_comentarios.as_view(), name='form_comentario'),
 ]
 
-# urlpatterns += staticfiles_urlpatterns()

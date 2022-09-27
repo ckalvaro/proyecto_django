@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy, reverse
 from AppBlog.forms import FormularioNoticia, RegistroDeUsuario, InicioDeUsuario, UserEditForm, AvatarForm, FormularioComentario
 from AppBlog.models import Categoria, Avatar, Noticia
-from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth import login, authenticate
 from django.http import HttpResponseRedirect
 from AppBlog.models import Comentario
 
@@ -35,7 +35,6 @@ class noticia_detalle_view(DetailView):
         context["imagen"] = carga_avatar(self.request)
         return context
 
-#@login_required
 def form_noticias(request):
     if request.method == 'POST':
         form = FormularioNoticia(request.POST)

@@ -22,7 +22,7 @@ class FormularioComentario(forms.ModelForm):
             'texto':''
         }
         widgets = {
-            'texto': forms.Textarea()#attrs={'class': 'form-control'}),
+            'texto': forms.Textarea()
         }
 
 
@@ -46,7 +46,7 @@ class InicioDeUsuario(AuthenticationForm):
 class UserEditForm(UserCreationForm):
     email = forms.EmailField(label= "Modificar email")
     username = forms.CharField(label="Cambiar nombre de usuario")
-    password1 = forms.CharField(label = "Modificar Contraseña", widget = forms.PasswordInput)
+    password1 = forms.CharField(label = "Contraseña actual", widget = forms.PasswordInput)
     password2 = forms.CharField(label = "Repita la contraseña", widget = forms.PasswordInput)
     web=forms.CharField(label="Modificar página web")
     descripcion = forms.CharField(label = "Modificar Descripción")
