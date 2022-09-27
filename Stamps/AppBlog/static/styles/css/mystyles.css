@@ -61,6 +61,16 @@
     padding: 5px;
 }
 
+.content1 .btn {
+    background: none;
+
+
+}
+
+.content1 .btn:hover {
+    background: #31afb6;
+}
+
 /***    css formulario noticia ***/
 .noticebox {
     margin-top: 70%;
@@ -138,18 +148,18 @@
     height: 30px;
 }
 
-.noticia-container{
+.noticia-container {
     margin-top: 3%;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     padding: 4%;
 }
 
-.noticia-subtitulo{
+.noticia-subtitulo {
     font-weight: 600;
     font-size: 1.8rem;
 }
 
-.noticia-cuerpo{
+.noticia-cuerpo {
 
     font-size: 1.5rem;
     color: rgb(10 9 9);
@@ -175,4 +185,5 @@
     }
 
 }
+
 /***  centrado de formularios ***/
