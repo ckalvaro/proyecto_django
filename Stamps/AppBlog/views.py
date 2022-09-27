@@ -59,11 +59,21 @@ class editar_noticia(UpdateView):
     model = Noticia
     template_name = 'AppBlog/editar_noticia.html'
     fields = ['titulo', 'subtitulo','categoria', 'cuerpo']
+    
+    def get_context_data(self,*args, **kwargs):
+        context = super(editar_noticia, self).get_context_data(*args,**kwargs)
+        context["imagen"] = carga_avatar(self.request)
+        return context
 
 class eliminar_noticia(DeleteView):
     model = Noticia
     template_name = 'AppBlog/eliminar_noticia.html'
     success_url = reverse_lazy('AppBlog:inicio')
+
+    def get_context_data(self,*args, **kwargs):
+        context = super(eliminar_noticia, self).get_context_data(*args,**kwargs)
+        context["imagen"] = carga_avatar(self.request)
+        return context
 
 
 def like_noticia(request, pk):
