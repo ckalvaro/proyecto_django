@@ -17,17 +17,24 @@ Nueva conversacion
             <h3> Iniciar una conversacion </h3>
         </div>
     </div>
-
-
     <div class="row justify-content-center mt-3 mb-5">
-        <div class="col-md-12 col-sm-12">
+        <div class="col-md-5 col-sm-12">
+                {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-danger">
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+                {% endif %}
+
             <form method="POST" name="username">
                 {% csrf_token %}
                 <p> Ingrese el nombre de usuario del destinatario </p>
-                {{ formulario.as_p }}
-                <div class="d-grid gap-2">
+                {{ formulario.media }}
+                {{ formulario.as_p }}    
+                <div class="d-grid gap-2">   
                     <button class="btn btn-success mt-3" type="submit">
-                        Continuar
+                        Crear conversación
                     </button> 
                 </div>
             </form>
