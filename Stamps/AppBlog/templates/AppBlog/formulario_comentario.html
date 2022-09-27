@@ -16,6 +16,8 @@ Comentarios
 
         <div class="text-center mb-5">
             <div class="form-container">
+                <div class="comentBox">
+
                     <form method="POST"> 
                                 {% csrf_token %}
                                 {{ form.media }}
@@ -23,6 +25,7 @@ Comentarios
                             <input class= "btn btn-primary btn-lg px-4 me-sm-3" type="submit" value="Comentario">
 
                     </form>
+                </div>
             </div>
         </div>
 
