@@ -61,13 +61,13 @@
     padding: 5px;
 }
 
-.content1 .btn {
+.content1 .btnb {
     background: none;
 
 
 }
 
-.content1 .btn:hover {
+.content1 .btnb:hover {
     background: #31afb6;
 }
 
