@@ -209,12 +209,16 @@
     color: #fff;
     background: rgb(0, 31, 36);
     background: linear-gradient(162deg, rgba(0, 31, 36, 1) 0%, rgba(64, 83, 128, 1) 35%, rgba(0, 212, 255, 1) 100%);
+    
 }
 
 .comentBox textarea:focus {
     background: rgb(207, 222, 224);
     background: linear-gradient(189deg, rgba(207, 222, 224, 1) 0%, rgba(204, 207, 213, 1) 35%, rgba(131, 167, 175, 1) 100%);
     color: #055f71;
+    box-shadow: 26px 24px 5px 0px rgba(0, 0, 0, 0.65);
+    -webkit-box-shadow: 26px 24px 5px 0px rgba(0, 0, 0, 0.65);
+    -moz-box-shadow: 26px 24px 5px 0px rgba(0, 0, 0, 0.65);
 }
 
 /***  centrado de formularios ***/
