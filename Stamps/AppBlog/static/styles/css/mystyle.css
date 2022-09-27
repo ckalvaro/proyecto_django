@@ -1,10 +1,24 @@
-.bioAna{
+.bioAna {
     text-align: justify;
     border-radius: 10px;
     margin: 5px;
     padding: 6px;
     border: 3px;
-    background: rgb(238,174,202);
-background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
-border: 3px solid rgb(190, 63, 118);
+    background: rgb(238, 174, 202);
+    background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+    border: 3px solid rgb(190, 63, 118);
+}
+
+.bioBox {
+    text-align: justify;
+    border-color: blue 2px;
+    background: rgb(207, 222, 224);
+    background: linear-gradient(189deg, rgba(207, 222, 224, 1) 0%, rgba(155, 181, 232, 1) 42%, rgba(5, 95, 113, 1) 100%);
+    border-radius: 10px ;
+    margin: 5px;
+    padding: 6px;
+    border: 3px solid rgba(13,201,239,1);
+    
+
+
 }
