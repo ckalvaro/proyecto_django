@@ -1,79 +1,108 @@
 {% extends "index.html" %}
 {% load static %}
 {% block header %}
-        <!-- Page Header-->
-        <header class="masthead" style="background-image: url({% static 'styles/assets/img/background.png' %})">
-            <div class="container position-relative px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-md-10 col-lg-8 col-xl-7">
-                        <div class="page-heading">
-                            <h1>About Us</h1>
-                            <span class="subheading"> Conocé a los creadores de Stamps! </span>
-                        </div>
-                    </div>
+<!-- Page Header-->
+<header class="masthead" style="background-image: url({% static 'styles/assets/img/background.png' %})">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="page-heading">
+                    <h1>About Us</h1>
+                    <span class="subheading"> Conocé a los creadores de Stamps! </span>
                 </div>
             </div>
-        </header>
+        </div>
+    </div>
+</header>
 {% endblock %}
 {% block contenido_que_cambia %}
-        <!-- Main Content-->
-        <main class="mb-4">
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-md-10 col-lg-8 col-xl-7">
-                        <h3>Ana Laura Cavagnaro</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut consequuntur magnam, excepturi aliquid ex itaque esse est vero natus quae optio aperiam soluta voluptatibus corporis atque iste neque sit tempora!</p>
-                        <li class="list-inline-item">
-                            <a href="https://github.com/ALCavagnaro" target="_blank">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fas fa-circle fa-stack-2x"></i>
-                                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                    </div>
-                </div>
-                <hr>
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-md-10 col-lg-8 col-xl-7">
-                        <h3>Alfonso Antonio Flores</h3>
-                        <p>Hola, mi nombre es Alfonso Antonio Flores, tengo 24 años, soy mexicano, actualmente soy estudiante en la Facultad de Ciencias Físico-Matemáticas de la BUAP, adscrito a la licenciatura en Matemáticas Aplicadas.
-                            Mi primer acercamiento a la programación fue en mi segundo semestre de la carrera, en el cual nos dieron una introducción al lenguaje C, de ahí nació la curiosidad por esta área, pues uno de mis intereses es el área de Análisis y Métodos Numéricos junto con el área de Probabilidad y Estadística y Ecuaciones Diferenciales que se conjuntan en la modelación matemática y se es necesario contar con varias herramientas de programación (Python, R, C, etc.).
-                            Por ello decidí tomar algunos cursos relacionados a estos leguajes, de ahí es que conocí esta grandiosa plataforma CoderHouse, en donde mi primer curso fue de desarrollo web, el cual me sirvió para solventar un trabajo escolar que me fue asignado.
-                            Mis pasatiempos favoritos son las demostraciones pues en alguno momento de la carrera me causaron problema, además de que si no estoy escuchando música doy asesorías a compañeros en algunas materias o realizando mis tareas escolares.
-                            Mi meta es llegar a ser un investigador reconocido en el área de Análisis y métodos numéricos enfocado a la simulación Estadística y el diseño de algoritmos para la solución de Ecuaciones Diferenciales de forma más eficiente, y ser en algún momento un buen docente con amplia experiencia en este campo de estudio.</p>
-                        <li class="list-inline-item">
-                            <a href="https://github.com/AlfonsoAntonioF" target="_blank">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fas fa-circle fa-stack-2x"></i>
-                                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                    </div>
-                </div>
-                <hr>
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-md-10 col-lg-8 col-xl-7">
-                        <h3>Álvaro Chañy Konrath</h3>
-                        <p>Buenas, me llamo Álvaro, soy argentino y tengo 22 años.
-                            Estudié la carrera de Contador Público en la Facultad de Ciencias Económicas, perteneciente a la Universidad Nacional de Córdoba.
-                            Empecé esta carrera en el año 2019, y aunque pude avanzar siempre me costó más de lo que esperaba.
-                            Seguí así hasta principios de 2022, donde tuve mi primer experiencia con la programación gracias a Argentina Programa.
-                            A partir de esta experiencia, me fasciné por el mundo de la programación y decidí dedicarme de lleno a esta nueva pasión.
-                            Tomé y estoy tomando muchos cursos, entre los más destacables están CS50's Introduction to Computer Science (HarvardX), y Programación en Python (Coderhouse) <br>
-                            Hace poco tomé la decisión de inscribirme a la carrera de Ingeniería en Sistemas de Información, en la Universidad Tecnológica Nacional, y actualmente estoy preparandome para ingresar a esta nueva etapa. <br>
-                            Mi objetivo a largo plazo es convertirme en un competente desarrollador de software, ya que me encanta la resolución de problemas mediante el uso de herramientas adecuadas!</p>
-                        <li class="list-inline-item">
-                            <a href="https://github.com/ckalvaro" target="_blank">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fas fa-circle fa-stack-2x"></i>
-                                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                    </div>
+<!-- Main Content-->
+<main class="mb-4">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="bioAna">
+                    <h3>Ana Laura Cavagnaro</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut consequuntur magnam, excepturi
+                        aliquid
+                        ex itaque esse est vero natus quae optio aperiam soluta voluptatibus corporis atque iste neque
+                        sit
+                        tempora!</p>
+                    <li class="list-inline-item">
+                        <a href="https://github.com/ALCavagnaro" target="_blank">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
                 </div>
             </div>
-        </main>
+
+        </div>
+    </div>
+    <hr>
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+            <h3>Alfonso Antonio Flores</h3>
+            <p>Hola, mi nombre es Alfonso Antonio Flores, tengo 24 años, soy mexicano, actualmente soy estudiante en la
+                Facultad de Ciencias Físico-Matemáticas de la BUAP, adscrito a la licenciatura en Matemáticas Aplicadas.
+                Mi primer acercamiento a la programación fue en mi segundo semestre de la carrera, en el cual nos dieron
+                una introducción al lenguaje C, de ahí nació la curiosidad por esta área, pues uno de mis intereses es
+                el área de Análisis y Métodos Numéricos junto con el área de Probabilidad y Estadística y Ecuaciones
+                Diferenciales que se conjuntan en la modelación matemática y se es necesario contar con varias
+                herramientas de programación (Python, R, C, etc.).
+                Por ello decidí tomar algunos cursos relacionados a estos leguajes, de ahí es que conocí esta grandiosa
+                plataforma CoderHouse, en donde mi primer curso fue de desarrollo web, el cual me sirvió para solventar
+                un trabajo escolar que me fue asignado.
+                Mis pasatiempos favoritos son las demostraciones pues en alguno momento de la carrera me causaron
+                problema, además de que si no estoy escuchando música doy asesorías a compañeros en algunas materias o
+                realizando mis tareas escolares.
+                Mi meta es llegar a ser un investigador reconocido en el área de Análisis y métodos numéricos enfocado a
+                la simulación Estadística y el diseño de algoritmos para la solución de Ecuaciones Diferenciales de
+                forma más eficiente, y ser en algún momento un buen docente con amplia experiencia en este campo de
+                estudio.</p>
+            <li class="list-inline-item">
+                <a href="https://github.com/AlfonsoAntonioF" target="_blank">
+                    <span class="fa-stack fa-lg">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                    </span>
+                </a>
+            </li>
+        </div>
+    </div>
+    <hr>
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+            <h3>Álvaro Chañy Konrath</h3>
+            <p>Buenas, me llamo Álvaro, soy argentino y tengo 22 años.
+                Estudié la carrera de Contador Público en la Facultad de Ciencias Económicas, perteneciente a la
+                Universidad Nacional de Córdoba.
+                Empecé esta carrera en el año 2019, y aunque pude avanzar siempre me costó más de lo que esperaba.
+                Seguí así hasta principios de 2022, donde tuve mi primer experiencia con la programación gracias a
+                Argentina Programa.
+                A partir de esta experiencia, me fasciné por el mundo de la programación y decidí dedicarme de lleno a
+                esta nueva pasión.
+                Tomé y estoy tomando muchos cursos, entre los más destacables están CS50's Introduction to Computer
+                Science (HarvardX), y Programación en Python (Coderhouse) <br>
+                Hace poco tomé la decisión de inscribirme a la carrera de Ingeniería en Sistemas de Información, en la
+                Universidad Tecnológica Nacional, y actualmente estoy preparandome para ingresar a esta nueva etapa.
+                <br>
+                Mi objetivo a largo plazo es convertirme en un competente desarrollador de software, ya que me encanta
+                la resolución de problemas mediante el uso de herramientas adecuadas!
+            </p>
+            <li class="list-inline-item">
+                <a href="https://github.com/ckalvaro" target="_blank">
+                    <span class="fa-stack fa-lg">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                    </span>
+                </a>
+            </li>
+        </div>
+    </div>
+    </div>
+</main>
 {% endblock %}
