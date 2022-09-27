@@ -23,5 +23,8 @@ Categoria {{ categoria }}
 </div>
 {% endfor %}
 <br>
-<a class="btn btn-primary btn-lg px-4" href=" {% url 'AppBlog:form_noticia' %}"> Crear una noticia </a>
+<div class="d-grid gap-2 mt-3">
+    <a class="btn btn-primary btn-lg px-4" href=" {% url 'AppBlog:form_noticia' %}"> Crear una noticia </a> <br>
+    <a class="btn btn-primary btn-lg px-4" href="{% url 'AppBlog:inicio' %}">Volver al inicio</a>
+</div>
 {% endblock %}
