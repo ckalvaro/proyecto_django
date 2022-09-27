@@ -19,7 +19,7 @@
 <div class="form-container">
     <div class="content1">
 
-        <a href="{% url 'AppBlog:agregar_avatar' %}"><img class="img-avatar-nav" src="{{ imagen }}" alt=" "> </a>
+        <a href="{% url 'AppBlog:agregar_avatar' %}"><img class="img-avatar-nav" src="{{ imagen }}" alt=" "> Haz click aquí para cambiar tu avatar</a>
 
         <form method="POST" action="{% url 'AppBlog:editar_usuario' %}" class="form-carga"> {% csrf_token %}
 

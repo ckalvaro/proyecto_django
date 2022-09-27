@@ -7,7 +7,6 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title> Inicio Proyecto</title>
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -30,7 +29,7 @@
                         
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppBlog:inicio' %}">AppBlog</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppMensajes:inbox' %}">AppMensajes</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="#">About Us</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'about_us' %}">About Us</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'admin:index' %}">Admin</a></li>
                        
                         
@@ -39,8 +38,8 @@
             </div>
         </nav>
         <!-- Page Header-->
+        {% block header %}
         <header class="masthead" style="background-image: url({% static 'styles/assets/img/background.png' %})">
-            <!-- {% load static %} <img src="{% static "styles/assets/img/home-bg.jpg" %}" alt="Hi!" /> -->
             <div class="container position-relative px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
@@ -51,10 +50,12 @@
                 </div>
             </div>
         </header>
+        {% endblock %}
+        {% block contenido_que_cambia %}
         <section>
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
-                    <div class="site-heading">
+                    <div class="site-heading text-center">
                         <h1>Bienvenid@ a nuestro proyecto</h1>
                     </div>
                 </div>
@@ -75,13 +76,14 @@
         </ul>
         </section>
         <!-- Footer-->
+        {% endblock %}
         <footer class="border-top">
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <ul class="list-inline text-center">
                             <li class="list-inline-item">
-                                <a href="https://github.com/ckalvaro/proyecto_django" target="_blank">
+                                <a href="https://github.com/ALCavagnaro" target="_blank">
                                     <span class="fa-stack fa-lg">
                                         <i class="fas fa-circle fa-stack-2x"></i>
                                         <i class="fab fa-github fa-stack-1x fa-inverse"></i>
