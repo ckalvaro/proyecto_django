@@ -1,6 +1,11 @@
+
 # proyecto_django
 
 proyecto final coderhouse
+
+### Instalar dependencias
+
+    pip install -r requirements.txt
 
 ### Para crear base de datos, ingresar a la terminal:
 
@@ -20,3 +25,5 @@ proyecto final coderhouse
 2- En admin.py agregar todos los modelos de la siguiente forma:
 
     admin.site.register(Nombre_de_objeto)
+
+
