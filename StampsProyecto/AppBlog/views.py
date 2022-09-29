@@ -162,7 +162,7 @@ def agregar_avatar(request):
                 avatar_anterior.delete()
             avatar_nuevo = Avatar(user = request.user, imagen = form.cleaned_data["imagen"])
             avatar_nuevo.save()
-            return render (request, 'AppBlog/inicio_app_blog.html', {"usuario": request.user, "mensaje": "Avatar cargado"})
+            return render (request, 'AppBlog/inicio_app_blog.html', {"usuario": request.user, "imagen": carga_avatar(request)})
     else:
         form = AvatarForm()
     return render (request, 'AppBlog/agregar_avatar.html', {"form": form, "usuario": request.user, "imagen": carga_avatar(request)})
@@ -177,5 +177,8 @@ class form_comentarios(CreateView):
         return super().form_valid(form)
     def get_success_url(self):
         return reverse_lazy('AppBlog:detalle', kwargs={'pk': self.kwargs['pk']})
-
+    def get_context_data(self,*args, **kwargs):
+        context = super(form_comentarios, self).get_context_data(*args,**kwargs)
+        context["imagen"] = carga_avatar(self.request)
+        return context
 
